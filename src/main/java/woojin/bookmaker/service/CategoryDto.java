@@ -11,18 +11,18 @@ import woojin.bookmaker.utils.DateUtils;
 @AllArgsConstructor
 public class CategoryDto {
     private final Integer id;
-    private final String name;
+    private final String title;
     private final String created;
     private final String updated;
-    private final Boolean isDeleted;
+    private final Boolean deleted;
 
     public static CategoryDto entityToDto(Category category) {
         return CategoryDto.builder()
                 .id(category.getId())
-                .name(category.getName())
+                .title(category.getTitle())
                 .created(DateUtils.dateTimeToString(category.getCreated()))
                 .updated(DateUtils.dateTimeToString(category.getUpdated()))
-                .isDeleted(category.getDeleted())
+                .deleted(category.getDeleted())
                 .build();
     }
 }
