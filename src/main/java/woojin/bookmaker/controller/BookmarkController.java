@@ -4,8 +4,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import woojin.bookmaker.controller.request.CreateBookmarkRequest;
+import woojin.bookmaker.controller.request.UpdateBookmarkRequest;
 import woojin.bookmaker.controller.response.CreateBookmarkResponse;
 import woojin.bookmaker.controller.response.ReadBookmarkResponse;
+import woojin.bookmaker.controller.response.UpdateBookmarkResponse;
 import woojin.bookmaker.service.BookmarkDto;
 import woojin.bookmaker.service.BookmarkService;
 
@@ -30,4 +32,11 @@ public class BookmarkController {
         BookmarkDto dto = bookmarkService.createBookmark(request);
         return ResponseEntity.ok(CreateBookmarkResponse.dtoToResponse(dto));
     }
+
+    @PutMapping
+    public ResponseEntity<?> updateBookmark(@RequestBody UpdateBookmarkRequest request) {
+        BookmarkDto dto = bookmarkService.updateBookmark(request);
+        return ResponseEntity.ok(UpdateBookmarkResponse.dtoToResponse(dto));
+    }
+
 }

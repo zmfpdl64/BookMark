@@ -1,8 +1,11 @@
 package woojin.bookmaker.service;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 import woojin.bookmaker.controller.request.CreateBookmarkRequest;
+import woojin.bookmaker.controller.request.UpdateBookmarkRequest;
 import woojin.bookmaker.repository.*;
 import woojin.bookmaker.service.exception.BookmarkErrorCode;
 import woojin.bookmaker.service.exception.CategoryErrorCode;
@@ -37,5 +40,15 @@ public class BookmarkService {
     public List<BookmarkDto> getBookmarks(Integer userId, Integer categoryId) {
         return bookmarkRepository.findByUserIdAndCategoryId(userId, categoryId)
                 .stream().map(BookmarkDto::entityToDto).toList();
+    }
+
+    @Transactional
+    public BookmarkDto updateBookmark(@RequestBody UpdateBookmarkRequest request) {
+        Bookmark bookmark = bookmarkRepository.findByUserIdAndId(request.getUserId(), request.getBookmarkId());
+        if(bookmark == null) {
+            throw new CustomException(BookmarkErrorCode.NOT_EXISTS);
+        }
+        bookmark.update(request.getTitle(), request.getLink());
+        return BookmarkDto.entityToDto(bookmark);
     }
 }

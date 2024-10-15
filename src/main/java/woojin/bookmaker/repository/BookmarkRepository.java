@@ -15,4 +15,10 @@ public interface BookmarkRepository extends JpaRepository<Bookmark, Integer> {
             @Param("userId") Integer userId,
             @Param("categoryId") Integer categoryId
     );
+
+    @Query("select b from Bookmark b where b.userId =:userId and b.id=:id")
+    Bookmark findByUserIdAndId(
+            @Param("userId") Integer userId,
+            @Param("id") Integer bookmarkId
+    );
 }

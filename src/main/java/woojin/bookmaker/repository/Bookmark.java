@@ -45,4 +45,10 @@ public class Bookmark {
                 .deleted(false)
                 .build();
     }
+
+    public void update(String title, String link) {
+        this.title = title;
+        this.link = link;
+        this.updated = DateUtils.now();
+    }
 }
