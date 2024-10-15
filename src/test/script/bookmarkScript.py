@@ -35,18 +35,16 @@ def 로그인():
         return
     print(response.json())
 
-def 내카테고리가져오기():
+def 내_카테고리들_가져오기(userId):
     global categoryUrl
-    userId = 3
     url = categoryUrl + "/" + str(userId)
     response = requests.get(url)
     data = response.json()
     pretty_json = json.dumps(data, indent=4, ensure_ascii=False)
     print(pretty_json)
 
-def 카테고리생성():
+def 내_카테고리_생성(userId):
     global categoryUrl
-    userId = 1
     title = "인터넷"
     data = {
         "title": title,
@@ -58,7 +56,21 @@ def 카테고리생성():
         return
     print(response.json())
 
-def 북마크생성(userId, categoryId):
+def 내_카테고리_수정(userId, categoryId):
+    global categoryUrl
+    title = "인터넷 수정"
+    data = {
+        "title": title,
+        "categoryId": categoryId,
+        "userId": userId
+    }
+    response = requests.put(categoryUrl, json=data)
+    if (response.status_code != 200):
+        print('실패')
+        return
+    print(response.json())
+
+def 내_북마크_생성(userId, categoryId):
     global bookmarkUrl
     title = "구글"
     link = "https://google.co.kr"
@@ -74,7 +86,7 @@ def 북마크생성(userId, categoryId):
         return
     print(response.json())
 
-def 내북마크읽기():
+def 내_북마크들_읽기(userId, categoryId):
     global bookmarkUrl
     userId = 1
     categoryId = 1
@@ -87,7 +99,7 @@ def 내북마크읽기():
         return
     print(json.dumps(response.json(), indent=2, ensure_ascii=False))
 
-def 내북마크수정(userId, bookmarkId):
+def 내_북마크_수정(userId, bookmarkId):
     global bookmarkUrl
     title = "수정된 구글"
     link = "https://google.com"
@@ -102,20 +114,31 @@ def 내북마크수정(userId, bookmarkId):
         return
     print(json.dumps(response.json(), indent=2, ensure_ascii=False))
 
-def 북마크들생성(userId):
-    for category in range(1, 50):
-        북마크생성(userId, 1)
+def 내_북마크들_생성(userId, categoryId):
+    for _ in range(1, 50):
+        내_북마크_생성(userId, categoryId)
 
+def 출력(methodName):
+    print("========= "+ methodName + " ===========")
 def start():
     userId = 1
     categoryId = 1
     bookmarkId = 1
-    회원가입()
-    로그인()
-    카테고리생성()
-    내카테고리가져오기()
-    북마크들생성(userId)
-    내북마크읽기()
-    내북마크수정(userId, bookmarkId)
+    # 회원가입()
+    # 로그인()
+
+    print("========= 내_카테고리_생성 ===========")
+    출력(내_카테고리_생성)
+    내_카테고리_생성(userId)
+    print("========= 내_카테고리들_가져오기 ===========")
+    내_카테고리들_가져오기(userId)
+    print("========= 내_카테고리_수정 ===========")
+    내_카테고리_수정(userId, categoryId)
+    print("========= 내_북마크들_생성 ===========")
+    내_북마크들_생성(userId, categoryId)
+    print("========= 내_북마크들_읽기 ===========")
+    내_북마크들_읽기(userId, categoryId)
+    print("========= 내_북마크_수정 ===========")
+    내_북마크_수정(userId, bookmarkId)
 
 start()
