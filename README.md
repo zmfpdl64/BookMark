@@ -30,7 +30,7 @@
 2.  북마크 링크 생성 CRUD
     - [x] C 14시 40분 ~ 15시 54분 (1시간 14분) [Flow 차트 확인](./DetailWork/CreateBookmark.md)
     - [x] R 10시 52분 ~ 11시 17분 (25분) [Flow 차트 확인](./DetailWork/ReadBookmark.md)
-    - [ ] U 11시 30분 ~ [Flow 차트 확인](./DetailWork/UpdateBookmark.md) 
+    - [x] U 11시 30분 ~ 12시 30분 (1시간)[Flow 차트 확인](./DetailWork/UpdateBookmark.md) 
     - [ ] D
 3. 검색해서 카테고리 찾기
 4. 최근 사용 북마크
@@ -61,4 +61,9 @@ DDD를 사용하지 않고 서비스 코드를 작성하는 이유
 초기 개발이기 떄문에 변경으로부터 영향이 적어야 한다고 생각했으며 
 외래키를 사용하지 않는 정책에 따라 Lazy Loading과 Eager Loading을 사용할 수 없으면 직접 Dto를 사용하여 맵핑할 것이기 떄문입니다.
 
+
+## Python 스크립트로 테스트하기
+1. 먼저 테스트할 서버를 띄워주세요~
+2. Python 인터프리터를 설정해주세요 [블로그](https://jojoldu.tistory.com/465)
+3. 스크립트를 실행하면 연속된 스크립트를 실행할 수 있습니다
 
