@@ -40,4 +40,11 @@ public class Users {
                 .deleted(false)
                 .build();
     }
+
+    public void update(String email, String password, String userName) {
+        this.email = email;
+        this.password = password;
+        this.userName = userName;
+        this.updated = DateUtils.now();
+    }
 }
