@@ -1,5 +1,7 @@
-import requests
-import json
+import requests, random, json, sys
+input = sys.stdin.readline
+
+
 base = "http://localhost:8080"
 userUrl = base + "/user"
 categoryUrl = base + "/category"
@@ -10,26 +12,47 @@ password = "1234"
 def 회원가입():
     global userUrl
     global email
+    global cnt
     global userName
     global password
-
     response = requests.post(userUrl, json={
         "userName" : userName,
         "password" : password,
-        "email" : email
+        "email" : email+str(random.random())
     })
     if(response.status_code != 200):
         json = response.json()
         print('실패')
         return
     print(response.json())
+    return response.json().get("id") 
 
 def 로그인():
+
     global email
     global password
+
     response = requests.get(userUrl, params = {
+
         "email" : email,
         "password" : password
+    })
+    if(response.status_code != 200):
+        return
+    print(response.json())
+
+def 회원정보_수정(userId):
+    global userName
+    global userUrl
+    global email
+    global password
+    changePassword = "change1234"
+    response = requests.put(userUrl, json = {
+        "userId": userId,
+        "email" : email,
+        "userName": userName,
+        "beforePassword" : password,
+        "changePassword": changePassword,
     })
     if(response.status_code != 200):
         return
@@ -54,7 +77,9 @@ def 내_카테고리_생성(userId):
     if (response.status_code != 200):
         print('실패')
         return
-    print(response.json())
+    dataJson = response.json()
+    print(dataJson)
+    return dataJson.get("id")
 
 def 내_카테고리_수정(userId, categoryId):
     global categoryUrl
@@ -84,7 +109,9 @@ def 내_북마크_생성(userId, categoryId):
     if (response.status_code != 200):
         print('실패')
         return
-    print(response.json())
+    data = response.json()
+    print(data)
+    return data.get("id")
 
 def 내_북마크들_읽기(userId, categoryId):
     global bookmarkUrl
@@ -115,30 +142,48 @@ def 내_북마크_수정(userId, bookmarkId):
     print(json.dumps(response.json(), indent=2, ensure_ascii=False))
 
 def 내_북마크들_생성(userId, categoryId):
+    data = []
     for _ in range(1, 50):
-        내_북마크_생성(userId, categoryId)
+        data.append(int(내_북마크_생성(userId, categoryId)))
+    return data
 
-def 출력(methodName):
+def 출력(method):
+    methodName = method.__name__
     print("========= "+ methodName + " ===========")
 def start():
-    userId = 1
-    categoryId = 1
-    bookmarkId = 1
-    # 회원가입()
+    # global userId
+    userId = int(회원가입())
     # 로그인()
+    출력(회원정보_수정)
+    회원정보_수정(userId)
 
-    print("========= 내_카테고리_생성 ===========")
     출력(내_카테고리_생성)
-    내_카테고리_생성(userId)
-    print("========= 내_카테고리들_가져오기 ===========")
+    categoryId = int(내_카테고리_생성(userId))
+
+    출력(내_카테고리들_가져오기)
     내_카테고리들_가져오기(userId)
-    print("========= 내_카테고리_수정 ===========")
+
+    출력(내_카테고리_수정)
     내_카테고리_수정(userId, categoryId)
-    print("========= 내_북마크들_생성 ===========")
-    내_북마크들_생성(userId, categoryId)
-    print("========= 내_북마크들_읽기 ===========")
+
+    출력(내_북마크들_생성)
+    bookmarkIdList = 내_북마크들_생성(userId, categoryId)
+    bookmarkId = bookmarkIdList[0]
+
+    출력(내_북마크들_읽기)
     내_북마크들_읽기(userId, categoryId)
-    print("========= 내_북마크_수정 ===========")
+
+    출력(내_북마크_수정)
     내_북마크_수정(userId, bookmarkId)
 
-start()
+while True:
+    print("시나리오 실행시 1 종료시 q를 입력하세요")
+    num = input().rstrip()
+    if num=="1":
+        start()
+        print("실행")
+    elif num=='q':
+        print("종료")
+        break
+
+
