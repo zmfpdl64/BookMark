@@ -18,32 +18,32 @@
 북마크 수집 페이지 만들기
 기능
 1. 유저 생성
-   - [X] C 1시간 30분 (exception handler 추가)
+   - [X] C 
    - [ ] R 
    - [ ] U
    - [ ] D
 1. 카테고리 
-   - [X] C 13시 54분 ~ 14시 39분 (45분) [Flow 차트 확인](./DetailWork/CreateCategory.md)
-   - [X] R 1시간 20분
+   - [X] C 
+   - [X] R 
    - [ ] U
    - [ ] D
 2.  북마크 링크 생성 CRUD
-    - [x] C 14시 40분 ~ 15시 54분 (1시간 14분) [Flow 차트 확인](./DetailWork/CreateBookmark.md)
-    - [x] R 10시 52분 ~ 11시 17분 (25분) [Flow 차트 확인](./DetailWork/ReadBookmark.md)
-    - [x] U 11시 30분 ~ 12시 30분 (1시간)[Flow 차트 확인](./DetailWork/UpdateBookmark.md) 
+    - [x] C 
+    - [x] R 
+    - [x] U  
     - [ ] D
 3. 검색해서 카테고리 찾기
 4. 최근 사용 북마크
 
 우선순위
 ### 백엔드
-1. - [x] 유저 생성
-2. - [x] 카테고리 생성
-3. - [x] 북마크 생성
-4. - [x] 카테고리들 읽기
-5. - [x] 북마크들 읽기
-6. - [x] 북마크 수정
-7. - [ ] 카테고리 수정
+1. - [x] 유저 생성 | 1시간 30분 (exception handler 추가)
+2. - [x] 카테고리 생성 | 13시 54분 ~ 14시 39분 (45분) [Flow 차트 확인](./DetailWork/CreateCategory.md)
+3. - [x] 북마크 생성 | 14시 40분 ~ 15시 54분 (1시간 14분) [Flow 차트 확인](./DetailWork/CreateBookmark.md)
+4. - [x] 카테고리들 읽기 | 1시간 20분
+5. - [x] 북마크들 읽기 | 10시 52분 ~ 11시 17분 (25분) [Flow 차트 확인](./DetailWork/ReadBookmark.md)
+6. - [x] 북마크 수정 | 11시 30분 ~ 12시 30분 (1시간)[Flow 차트 확인](./DetailWork/UpdateBookmark.md)
+7. - [x] 카테고리 수정 | 12시 40분 ~ 13시 (20분) [Flow 차트 확인](./DetailWork/UpdateCategory.md)
 8. - [ ] 유저 수정
 9. - [ ] 카테고리 삭제
 10. - [ ] 북마크 삭제
