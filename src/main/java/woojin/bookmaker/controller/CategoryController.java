@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import woojin.bookmaker.controller.request.CreateBookmarkRequest;
 import woojin.bookmaker.controller.request.CreateCategoryRequest;
+import woojin.bookmaker.controller.request.UpdateCategoryRequest;
 import woojin.bookmaker.controller.response.CreateBookmarkResponse;
 import woojin.bookmaker.controller.response.CreateCategoryResponse;
 import woojin.bookmaker.service.BookmarkDto;
@@ -30,6 +31,13 @@ public class CategoryController {
     public ResponseEntity<?> createCategory(@RequestBody CreateCategoryRequest request) {
         //TODO: 인증/인가 적용 시 userId 리펙토링
         CategoryDto dto = categoryService.createCategory(request.getTitle(), request.getUserId());
+        return ResponseEntity.ok(CreateCategoryResponse.dtoToResponse(dto));
+    }
+
+    @PutMapping
+    public ResponseEntity<?> updateCategory(@RequestBody UpdateCategoryRequest request) {
+        //TODO: 인증/인가 적용 시 userId 리펙토링
+        CategoryDto dto = categoryService.updateCategory(request.getCategoryId(), request.getUserId(), request.getTitle());
         return ResponseEntity.ok(CreateCategoryResponse.dtoToResponse(dto));
     }
 

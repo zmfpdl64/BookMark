@@ -1,5 +1,6 @@
 package woojin.bookmaker.service;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import woojin.bookmaker.controller.request.CreateBookmarkRequest;
@@ -36,4 +37,16 @@ public class CategoryService {
     }
 
 
+    @Transactional
+    public CategoryDto updateCategory(Integer categoryId, Integer userId, String title) {
+        Category category = categoryRepository.getCategoryById(categoryId);
+        if(category==null){
+            throw new CustomException(CategoryErrorCode.NOT_EXISTS);
+        }
+        if(!category.getUserId().equals(userId)){
+            throw new CustomException(CategoryErrorCode.NOT_AUTHORIZATION);
+        }
+        category.update(title);
+        return CategoryDto.entityToDto(category);
+    }
 }

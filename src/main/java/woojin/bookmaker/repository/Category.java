@@ -39,4 +39,9 @@ public class Category {
                 .deleted(false)
                 .build();
     }
+
+    public void update(String title) {
+        this.title = title;
+        this.updated = DateUtils.now();
+    }
 }
