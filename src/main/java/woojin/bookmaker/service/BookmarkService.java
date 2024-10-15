@@ -4,8 +4,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import woojin.bookmaker.controller.request.CreateBookmarkRequest;
 import woojin.bookmaker.repository.*;
+import woojin.bookmaker.service.exception.BookmarkErrorCode;
 import woojin.bookmaker.service.exception.CategoryErrorCode;
 import woojin.bookmaker.service.exception.CustomException;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @Service
@@ -27,7 +30,12 @@ public class BookmarkService {
             throw new CustomException(CategoryErrorCode.NOT_EXISTS);
         }
         //북마크 생성
-        Bookmark bookmark = Bookmark.of(category.getId(), category.getUserId(), request.getTitle(), request.getTitle());
+        Bookmark bookmark = Bookmark.of(category.getId(), category.getUserId(), request.getTitle(), request.getLink());
         return BookmarkDto.entityToDto(bookmarkRepository.save(bookmark));
+    }
+
+    public List<BookmarkDto> getBookmarks(Integer userId, Integer categoryId) {
+        return bookmarkRepository.findByUserIdAndCategoryId(userId, categoryId)
+                .stream().map(BookmarkDto::entityToDto).toList();
     }
 }
