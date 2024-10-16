@@ -9,6 +9,7 @@ bookmarkUrl = base + "/bookmark"
 email = "email@naver.com"
 userName = "test"
 password = "1234"
+changePassword = "change1234"
 rand = ""
 def 회원가입():
     global userUrl
@@ -49,7 +50,7 @@ def 회원정보_수정(userId):
     global email
     global password
     global rand
-    changePassword = "change1234"
+    global changePassword
     response = requests.put(userUrl, json = {
         "userId": userId,
         "email" : email + rand,
@@ -58,6 +59,23 @@ def 회원정보_수정(userId):
         "changePassword": changePassword,
     })
     if(response.status_code != 200):
+        return
+    print(response.json())
+
+def 회원탈퇴(userId):
+    global userUrl
+    global email
+    global userName
+    global changePassword
+    global rand
+    response = requests.delete(userUrl, json={
+        "userId": userId,
+        "email" : email + rand,
+        "password": changePassword
+    })
+    if(response.status_code != 200):
+        json = response.json()
+        print('실패')
         return
     print(response.json())
 
@@ -211,6 +229,9 @@ def start():
 
     출력(내_카테고리_삭제)
     내_카테고리_삭제(userId, categoryId)
+
+    출력(회원탈퇴)
+    회원탈퇴(userId)
 
 while True:
     print("시나리오 실행시 1 종료시 q를 입력하세요")
