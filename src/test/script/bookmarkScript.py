@@ -158,6 +158,18 @@ def 내_북마크_수정(userId, bookmarkId):
         return
     print(json.dumps(response.json(), indent=2, ensure_ascii=False))
 
+def 내_북마크_삭제(userId, bookmarkId):
+    global bookmarkUrl
+    data = {
+        "userId": userId,
+        "bookmarkId": bookmarkId
+    }
+    response = requests.delete(bookmarkUrl, json=data)
+    if (response.status_code != 200):
+        print('실패')
+        return
+    print(json.dumps(response.json(), indent=2, ensure_ascii=False))
+
 def 내_북마크들_생성(userId, categoryId):
     data = []
     for _ in range(1, 10):
@@ -193,6 +205,9 @@ def start():
 
     출력(내_북마크_수정)
     내_북마크_수정(userId, bookmarkId)
+
+    출력(내_북마크_삭제)
+    내_북마크_삭제(userId, bookmarkId)
 
     출력(내_카테고리_삭제)
     내_카테고리_삭제(userId, categoryId)
