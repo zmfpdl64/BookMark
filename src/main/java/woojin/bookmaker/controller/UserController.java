@@ -10,9 +10,7 @@ import woojin.bookmaker.controller.request.UpdateUserRequest;
 import woojin.bookmaker.controller.response.CreateUserResponse;
 import woojin.bookmaker.controller.response.DeleteUserResponse;
 import woojin.bookmaker.controller.response.UpdateUserResponse;
-import woojin.bookmaker.service.UserService;
-import woojin.bookmaker.service.exception.CustomException;
-import woojin.bookmaker.service.exception.UserErrorCode;
+import woojin.bookmaker.service.user.UserService;
 
 @RequiredArgsConstructor
 @RequestMapping(path = "/user")

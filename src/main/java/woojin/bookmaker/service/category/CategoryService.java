@@ -1,13 +1,12 @@
-package woojin.bookmaker.service;
+package woojin.bookmaker.service.category;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import woojin.bookmaker.controller.request.CreateBookmarkRequest;
-import woojin.bookmaker.repository.*;
+import woojin.bookmaker.service.bookmark.BookmarkRepository;
 import woojin.bookmaker.service.exception.CategoryErrorCode;
 import woojin.bookmaker.service.exception.CustomException;
-import woojin.bookmaker.service.exception.UserErrorCode;
+import woojin.bookmaker.service.user.UserRepository;
 
 import java.util.List;
 

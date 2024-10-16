@@ -1,4 +1,4 @@
-package woojin.bookmaker.repository;
+package woojin.bookmaker.service.bookmark;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

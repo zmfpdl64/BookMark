@@ -1,4 +1,4 @@
-package woojin.bookmaker.repository;
+package woojin.bookmaker.service.user;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

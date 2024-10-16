@@ -10,8 +10,8 @@ import woojin.bookmaker.controller.response.CreateBookmarkResponse;
 import woojin.bookmaker.controller.response.DeleteBookmarkResponse;
 import woojin.bookmaker.controller.response.ReadBookmarkResponse;
 import woojin.bookmaker.controller.response.UpdateBookmarkResponse;
-import woojin.bookmaker.service.BookmarkDto;
-import woojin.bookmaker.service.BookmarkService;
+import woojin.bookmaker.service.bookmark.BookmarkDto;
+import woojin.bookmaker.service.bookmark.BookmarkService;
 
 import java.util.List;
 

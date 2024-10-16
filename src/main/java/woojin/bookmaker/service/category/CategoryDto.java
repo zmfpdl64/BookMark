@@ -1,9 +1,8 @@
-package woojin.bookmaker.service;
+package woojin.bookmaker.service.category;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import woojin.bookmaker.repository.Category;
 import woojin.bookmaker.utils.DateUtils;
 
 @Getter

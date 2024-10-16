@@ -3,14 +3,12 @@ package woojin.bookmaker.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import woojin.bookmaker.controller.request.CreateBookmarkRequest;
 import woojin.bookmaker.controller.request.CreateCategoryRequest;
 import woojin.bookmaker.controller.request.DeleteCategoryRequest;
 import woojin.bookmaker.controller.request.UpdateCategoryRequest;
 import woojin.bookmaker.controller.response.*;
-import woojin.bookmaker.service.BookmarkDto;
-import woojin.bookmaker.service.CategoryDto;
-import woojin.bookmaker.service.CategoryService;
+import woojin.bookmaker.service.category.CategoryDto;
+import woojin.bookmaker.service.category.CategoryService;
 
 import java.util.List;
 

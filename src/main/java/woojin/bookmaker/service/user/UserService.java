@@ -1,13 +1,9 @@
-package woojin.bookmaker.service;
+package woojin.bookmaker.service.user;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import woojin.bookmaker.repository.UserRepository;
-import woojin.bookmaker.repository.Users;
 import woojin.bookmaker.service.exception.CustomException;
 import woojin.bookmaker.service.exception.UserErrorCode;
-
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor

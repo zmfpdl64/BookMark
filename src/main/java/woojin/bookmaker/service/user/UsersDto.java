@@ -1,11 +1,8 @@
-package woojin.bookmaker.service;
+package woojin.bookmaker.service.user;
 
-import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import org.hibernate.type.descriptor.DateTimeUtils;
-import woojin.bookmaker.repository.Users;
 import woojin.bookmaker.utils.DateUtils;
 
 @Getter

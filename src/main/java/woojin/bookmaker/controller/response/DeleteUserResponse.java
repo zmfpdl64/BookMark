@@ -3,9 +3,7 @@ package woojin.bookmaker.controller.response;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import woojin.bookmaker.repository.Users;
-import woojin.bookmaker.service.UsersDto;
-import woojin.bookmaker.utils.DateUtils;
+import woojin.bookmaker.service.user.UsersDto;
 
 @Getter
 @Builder
