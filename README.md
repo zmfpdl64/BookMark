@@ -25,7 +25,7 @@
 1. 카테고리 
    - [X] C 
    - [X] R 
-   - [ ] U
+   - [x] U
    - [ ] D
 2.  북마크 링크 생성 CRUD
     - [x] C 
@@ -44,10 +44,13 @@
 5. - [x] 북마크들 읽기 | 10시 52분 ~ 11시 17분 (25분) [Flow 차트 확인](./DetailWork/ReadBookmark.md)
 6. - [x] 북마크 수정 | 11시 30분 ~ 12시 30분 (1시간)[Flow 차트 확인](./DetailWork/UpdateBookmark.md)
 7. - [x] 카테고리 수정 | 12시 40분 ~ 13시 (20분) [Flow 차트 확인](./DetailWork/UpdateCategory.md)
-8. - [x] 유저 수정 | 17시 ~  [Flow 차트 확인](./DetailWork/UpdateUser.md)
-9. - [ ] 카테고리 삭제
+8. - [x] 유저 수정 | 17시 ~ 19시 (2시간 테스트 스크립트 리펙토링) [Flow 차트 확인](./DetailWork/UpdateUser.md)
+9. - [] 카테고리 삭제 
 10. - [ ] 북마크 삭제
 11. - [ ] 인증/인가 Kakao OAuth 적용
+12. - [ ] 최근 사용 북마크
+13. - [ ] 북마크 검색
+14. - [ ] 북마크, 카테고리 순서 변경
 
 ### 프론트 엔드
 1. 메인 페이지 (검색, 최근 사용 북마크)
