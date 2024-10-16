@@ -32,4 +32,13 @@ public class UserService {
         user.update(email, changePassword, userName);
         return UsersDto.entityToDto(user);
     }
+
+    public UsersDto deleteUser(Integer userId, String email, String password) {
+        Users user = userRepository.findById(userId).orElseThrow(() -> new CustomException(UserErrorCode.NOT_EXISTS));
+        if(!user.getEmail().equals(email) || user.getPassword().equals(password)) {
+            throw new CustomException(UserErrorCode.NOT_AUTHENTICATION);
+        }
+        user.delete();
+        return UsersDto.entityToDto(user);
+    }
 }

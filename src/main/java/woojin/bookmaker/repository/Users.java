@@ -47,4 +47,9 @@ public class Users {
         this.userName = userName;
         this.updated = DateUtils.now();
     }
+
+    public void delete() {
+        this.deleted = true;
+        this.updated = DateUtils.now();
+    }
 }
