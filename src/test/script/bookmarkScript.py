@@ -9,16 +9,18 @@ bookmarkUrl = base + "/bookmark"
 email = "email@naver.com"
 userName = "test"
 password = "1234"
+rand = ""
 def 회원가입():
     global userUrl
     global email
-    global cnt
     global userName
     global password
+    global rand
+    rand = str(random.random())
     response = requests.post(userUrl, json={
         "userName" : userName,
         "password" : password,
-        "email" : email+str(random.random())
+        "email" : email + rand
     })
     if(response.status_code != 200):
         json = response.json()
@@ -46,10 +48,11 @@ def 회원정보_수정(userId):
     global userUrl
     global email
     global password
+    global rand
     changePassword = "change1234"
     response = requests.put(userUrl, json = {
         "userId": userId,
-        "email" : email,
+        "email" : email + rand,
         "userName": userName,
         "beforePassword" : password,
         "changePassword": changePassword,
@@ -90,6 +93,20 @@ def 내_카테고리_수정(userId, categoryId):
         "userId": userId
     }
     response = requests.put(categoryUrl, json=data)
+    if (response.status_code != 200):
+        print('실패')
+        return
+    print(response.json())
+
+def 내_카테고리_삭제(userId, categoryId):
+    global categoryUrl
+    title = "인터넷 수정"
+    data = {
+        "userId": userId,
+        "categoryId": categoryId
+    }
+    response = requests.delete(categoryUrl, json=data)
+
     if (response.status_code != 200):
         print('실패')
         return
@@ -143,15 +160,16 @@ def 내_북마크_수정(userId, bookmarkId):
 
 def 내_북마크들_생성(userId, categoryId):
     data = []
-    for _ in range(1, 50):
+    for _ in range(1, 10):
         data.append(int(내_북마크_생성(userId, categoryId)))
     return data
 
 def 출력(method):
     methodName = method.__name__
-    print("========= "+ methodName + " ===========")
+    print("\n\n========= "+ methodName + " ===========")
 def start():
     # global userId
+    출력(회원가입)
     userId = int(회원가입())
     # 로그인()
     출력(회원정보_수정)
@@ -175,6 +193,9 @@ def start():
 
     출력(내_북마크_수정)
     내_북마크_수정(userId, bookmarkId)
+
+    출력(내_카테고리_삭제)
+    내_카테고리_삭제(userId, categoryId)
 
 while True:
     print("시나리오 실행시 1 종료시 q를 입력하세요")
