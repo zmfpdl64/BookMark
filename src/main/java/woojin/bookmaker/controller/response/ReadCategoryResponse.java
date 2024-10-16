@@ -8,17 +8,16 @@ import woojin.bookmaker.service.CategoryDto;
 @Builder
 @Getter
 @AllArgsConstructor
-public class CreateCategoryResponse {
+public class ReadCategoryResponse {
     private final Integer id;
     private final Integer userId;
     private final String title;
-    private final String link;
     private final String created;
     private final String updated;
     private final Boolean deleted;
 
-    public static CreateCategoryResponse dtoToResponse(CategoryDto dto) {
-        return CreateCategoryResponse.builder()
+    public static ReadCategoryResponse dtoToResponse(CategoryDto dto) {
+        return ReadCategoryResponse.builder()
                 .id(dto.getId())
                 .userId(dto.getUserId())
                 .title(dto.getTitle())

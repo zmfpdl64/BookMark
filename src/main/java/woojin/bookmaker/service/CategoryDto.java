@@ -11,6 +11,7 @@ import woojin.bookmaker.utils.DateUtils;
 @AllArgsConstructor
 public class CategoryDto {
     private final Integer id;
+    private final Integer userId;
     private final String title;
     private final String created;
     private final String updated;
@@ -19,6 +20,7 @@ public class CategoryDto {
     public static CategoryDto entityToDto(Category category) {
         return CategoryDto.builder()
                 .id(category.getId())
+                .userId(category.getUserId())
                 .title(category.getTitle())
                 .created(DateUtils.dateTimeToString(category.getCreated()))
                 .updated(DateUtils.dateTimeToString(category.getUpdated()))

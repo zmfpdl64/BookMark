@@ -49,4 +49,13 @@ public class CategoryService {
         category.update(title);
         return CategoryDto.entityToDto(category);
     }
+
+    public CategoryDto deleteCategory(Integer userId, Integer categoryId) {
+        Category category = categoryRepository.getCategoryById(categoryId);
+        if(category.getUserId() != userId) {
+            throw new CustomException(CategoryErrorCode.NOT_AUTHORIZATION);
+        }
+        category.delete();
+        return CategoryDto.entityToDto(category);
+    }
 }

@@ -5,20 +5,19 @@ import lombok.Builder;
 import lombok.Getter;
 import woojin.bookmaker.service.CategoryDto;
 
-@Builder
 @Getter
+@Builder
 @AllArgsConstructor
-public class CreateCategoryResponse {
+public class UpdateCategoryResponse {
     private final Integer id;
     private final Integer userId;
     private final String title;
-    private final String link;
     private final String created;
     private final String updated;
     private final Boolean deleted;
 
-    public static CreateCategoryResponse dtoToResponse(CategoryDto dto) {
-        return CreateCategoryResponse.builder()
+    public static UpdateCategoryResponse dtoToResponse(CategoryDto dto) {
+        return UpdateCategoryResponse.builder()
                 .id(dto.getId())
                 .userId(dto.getUserId())
                 .title(dto.getTitle())

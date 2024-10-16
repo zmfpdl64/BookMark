@@ -44,4 +44,9 @@ public class Category {
         this.title = title;
         this.updated = DateUtils.now();
     }
+
+    public void delete() {
+        this.deleted = true;
+        this.updated = DateUtils.now();
+    }
 }

@@ -25,6 +25,7 @@ public class UserService {
 
     public UsersDto updateUser(Integer userId, String email, String beforePassword, String changePassword, String userName) {
         Users user = userRepository.findById(userId).orElseThrow(() -> new CustomException(UserErrorCode.NOT_EXISTS));
+
         if(!user.getEmail().equals(email) || !user.getPassword().equals(beforePassword)) {
             throw new CustomException(UserErrorCode.NOT_AUTHENTICATION);
         }

@@ -5,9 +5,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import woojin.bookmaker.controller.request.CreateBookmarkRequest;
 import woojin.bookmaker.controller.request.CreateCategoryRequest;
+import woojin.bookmaker.controller.request.DeleteCategoryRequest;
 import woojin.bookmaker.controller.request.UpdateCategoryRequest;
-import woojin.bookmaker.controller.response.CreateBookmarkResponse;
-import woojin.bookmaker.controller.response.CreateCategoryResponse;
+import woojin.bookmaker.controller.response.*;
 import woojin.bookmaker.service.BookmarkDto;
 import woojin.bookmaker.service.CategoryDto;
 import woojin.bookmaker.service.CategoryService;
@@ -23,7 +23,8 @@ public class CategoryController {
 
     @GetMapping("/{userId}")
     public ResponseEntity<?> getCategories(@PathVariable("userId") Integer userId) {
-        List<CategoryDto> categoryList = categoryService.getCategories(userId);
+        List<ReadCategoryResponse> categoryList = categoryService.getCategories(userId)
+                .stream().map(ReadCategoryResponse::dtoToResponse).toList();
         return ResponseEntity.ok(categoryList);
     }
 
@@ -38,7 +39,13 @@ public class CategoryController {
     public ResponseEntity<?> updateCategory(@RequestBody UpdateCategoryRequest request) {
         //TODO: 인증/인가 적용 시 userId 리펙토링
         CategoryDto dto = categoryService.updateCategory(request.getCategoryId(), request.getUserId(), request.getTitle());
-        return ResponseEntity.ok(CreateCategoryResponse.dtoToResponse(dto));
+        return ResponseEntity.ok(UpdateCategoryResponse.dtoToResponse(dto));
+    }
+
+    @DeleteMapping
+    public ResponseEntity<DeleteCategoryResponse> deleteCategory(@RequestBody DeleteCategoryRequest request) {
+        DeleteCategoryResponse response = DeleteCategoryResponse.dtoToResponse(categoryService.deleteCategory(request.getUserId(), request.getCategoryId()));
+        return ResponseEntity.ok(response);
     }
 
 }
