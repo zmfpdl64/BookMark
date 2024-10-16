@@ -51,4 +51,13 @@ public class BookmarkService {
         bookmark.update(request.getTitle(), request.getLink());
         return BookmarkDto.entityToDto(bookmark);
     }
+
+    public BookmarkDto deleteBookmark(Integer userId, Integer bookmarkId) {
+        Bookmark bookmark = bookmarkRepository.findById(bookmarkId).orElseThrow(() -> new CustomException(BookmarkErrorCode.NOT_EXISTS));
+        if(bookmark.getUserId() != userId) {
+            throw new CustomException(BookmarkErrorCode.UNAUTHORIZATION);
+        }
+        bookmark.delete();
+        return BookmarkDto.entityToDto(bookmark);
+    }
 }

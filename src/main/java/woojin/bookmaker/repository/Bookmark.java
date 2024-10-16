@@ -51,4 +51,9 @@ public class Bookmark {
         this.link = link;
         this.updated = DateUtils.now();
     }
+
+    public void delete() {
+        this.deleted = true;
+        this.updated = DateUtils.now();
+    }
 }

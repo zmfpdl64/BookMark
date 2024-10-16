@@ -4,8 +4,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import woojin.bookmaker.controller.request.CreateBookmarkRequest;
+import woojin.bookmaker.controller.request.DeleteBookmarkRequest;
 import woojin.bookmaker.controller.request.UpdateBookmarkRequest;
 import woojin.bookmaker.controller.response.CreateBookmarkResponse;
+import woojin.bookmaker.controller.response.DeleteBookmarkResponse;
 import woojin.bookmaker.controller.response.ReadBookmarkResponse;
 import woojin.bookmaker.controller.response.UpdateBookmarkResponse;
 import woojin.bookmaker.service.BookmarkDto;
@@ -37,6 +39,12 @@ public class BookmarkController {
     public ResponseEntity<?> updateBookmark(@RequestBody UpdateBookmarkRequest request) {
         BookmarkDto dto = bookmarkService.updateBookmark(request);
         return ResponseEntity.ok(UpdateBookmarkResponse.dtoToResponse(dto));
+    }
+
+    @DeleteMapping
+    public ResponseEntity<?> deleteBookmark(@RequestBody DeleteBookmarkRequest request) {
+        BookmarkDto dto = bookmarkService.deleteBookmark(request.getUserId(), request.getBookmarkId());
+        return ResponseEntity.ok(DeleteBookmarkResponse.dtoToResponse(dto));
     }
 
 }
