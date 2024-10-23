@@ -1,4 +1,4 @@
-import requests, random, json, sys
+import webbrowser, requests, random, json, sys
 input = sys.stdin.readline
 
 
@@ -6,11 +6,22 @@ base = "http://localhost:8080"
 userUrl = base + "/user"
 categoryUrl = base + "/category"
 bookmarkUrl = base + "/bookmark"
+googleUrl = "https://accounts.google.com/o/oauth2/v2/auth"
+redirectUrl = "http://localhost:8080/user/google/callback"
+clientId = "227716410232-dkede9udod9f1vs33tbk6g360dmpegv6.apps.googleusercontent.com"
+
 email = "email@naver.com"
 userName = "test"
 password = "1234"
 changePassword = "change1234"
 rand = ""
+
+flag = False
+oAuthEmail = ""
+OAuthuserName = ""
+OAuthpassword = ""
+
+
 def 회원가입():
     global userUrl
     global email
@@ -43,6 +54,28 @@ def 로그인():
     if(response.status_code != 200):
         return
     print(response.json())
+
+def 구글로그인테스트():
+    # 요청에 필요한 URL 및 파라미터
+
+    global googleUrl, redirectUrl, clientId
+
+    # 파라미터 설정
+    params = {
+        "scope": "https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email",
+        "access_type": "online",
+        "include_granted_scopes": "true",
+        "response_type": "code",
+        "redirect_uri": redirectUrl,
+        "client_id": clientId
+    }
+
+    # 브라우저로 요청 URL 열기
+    request_url = requests.Request('GET', googleUrl, params=params).prepare().url
+    print("브라우저에서 로그인:", request_url)
+
+    # 브라우저에서 열기
+    webbrowser.open(request_url)
 
 def 회원정보_수정(userId):
     global userName
@@ -202,6 +235,7 @@ def start():
     출력(회원가입)
     userId = int(회원가입())
     # 로그인()
+    print(f'유저 id: {userId}')
     출력(회원정보_수정)
     회원정보_수정(userId)
 
@@ -234,13 +268,21 @@ def start():
     회원탈퇴(userId)
 
 while True:
-    print("시나리오 실행시 1 종료시 q를 입력하세요")
+    print("시나리오 선택지를 입력하시오")
+    print("1. Google OAuth 시나리오 선택시 1을 입력해주세요.")
+    print("2. 일반 인증/인가 시나리오 선택 시 2를 입력해주세요")
+    print("3. 종료 시 q를 입력해주세요")
     num = input().rstrip()
     if num=="1":
+        구글로그인테스트()
+        print("실행")
+    elif num=="2":
         start()
         print("실행")
     elif num=='q':
         print("종료")
         break
+    else:
+        print("다시 입력해주세요")
 
 
