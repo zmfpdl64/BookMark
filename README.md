@@ -78,13 +78,51 @@
 2. 카테고리 페이지
 3. 북마크 페이지
 4. 인증/인가 페이지
- 
-## 코드 작성 스타일
 
-DDD를 사용하지 않고 서비스 코드를 작성하는 이유
-초기 개발이기 떄문에 변경으로부터 영향이 적어야 한다고 생각했으며 
-외래키를 사용하지 않는 정책에 따라 Lazy Loading과 Eager Loading을 사용할 수 없으면 직접 Dto를 사용하여 맵핑할 것이기 떄문입니다.
+### 폴더 구조 설계
+```commandline
+bookmaker
+├── common
+│   ├── config
+│   │   └── RestTemplateConfiguration.java
+│   ├── global
+│   │   └── ExceptionAdvisor.java
+│   └── utils
+│       ├── DateUtils.java
+│       └── PrintUtils.java
+├── controller
+│   ├── request
+│   │   ├── create
+│   │   ├── delete
+│   │   ├── read
+│   │   └── update
+│   ├── response
+│   │   ├── create
+│   │   ├── delete
+│   │   ├── read
+│   │   └── update
+│   ├── BookmarkController.java
+│   ├── CategoryController.java
+│   └── UserController.java
+├── handler
+│   └── service
+│       ├── bookmark
+│       ├── category
+│       ├── oauth
+│       └── user
+│   └── UserAuthDto.java
+│   └── UserAuthHandler.java
+└── BookmakerApplication.java
+```
+- common 패키지는 전역적으로 사용하는 클래스입니다.
+- handler 클래스는 여러개의 서비스 클래스를 통합하는 클래스로 비즈니스를 실행시키는 클래스 계층입니다.
+이 방식은 서비스끼리의 참조를 하는 참조 순환으로부터 안정적인 특징을 가지고 있습니다.
+    - service 클래스는 각각의 도메인에서 수행되는 로직들을 작성했으며 root agregate 개념은 적용하지 않았습니다. 
+- controller 패키지의 역할은 입력, 출력, 유효성 검증의 역할을 하고 있다고 생각하기 때문에 분리하게 됐습니다.
 
+각각의 계층에서 dto클래스들을 둔것은 각각의 계층의 변화로부터 영향을 최소화 하기 위함입니다.
+service에서는 entity의 최대한의 정보를 반환하고 handler계층에서는 여러 도메인의 데이터를 통합해야할 때 
+병합하고 데이터를 반환하고 controller에서는 필요한 데이터만을 전달하도록 설계했습니다.
 
 ## Python 스크립트로 테스트하기
 1. 먼저 테스트할 서버를 띄워주세요~
