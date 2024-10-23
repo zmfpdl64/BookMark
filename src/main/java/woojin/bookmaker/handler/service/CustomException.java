@@ -1,4 +1,4 @@
-package woojin.bookmaker.handler.service.exception;
+package woojin.bookmaker.handler.service;
 
 public class CustomException extends RuntimeException{
     private ErrorCode errorCode;

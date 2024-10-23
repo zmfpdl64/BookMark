@@ -2,8 +2,7 @@ package woojin.bookmaker.handler.service.user;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import woojin.bookmaker.handler.service.exception.CustomException;
-import woojin.bookmaker.handler.service.exception.UserErrorCode;
+import woojin.bookmaker.handler.service.CustomException;
 
 @Service
 @RequiredArgsConstructor

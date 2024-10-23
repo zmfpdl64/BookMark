@@ -1,11 +1,12 @@
-package woojin.bookmaker.handler.service.exception;
+package woojin.bookmaker.handler.service.category;
 
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import woojin.bookmaker.handler.service.ErrorCode;
 
 @RequiredArgsConstructor
-public enum CategoryErrorCode implements ErrorCode{
+public enum CategoryErrorCode implements ErrorCode {
     NOT_EXISTS(HttpStatus.BAD_REQUEST.value(), "카테고리가 존재하지 않습니다."),
     NOT_AUTHORIZATION(HttpStatus.FORBIDDEN.value(), "유저의 권한이 없습니다.");
     private final int status;

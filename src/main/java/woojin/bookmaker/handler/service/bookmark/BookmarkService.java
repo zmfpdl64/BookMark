@@ -9,9 +9,8 @@ import woojin.bookmaker.controller.request.update.UpdateBookmarkRequest;
 import woojin.bookmaker.handler.service.category.CategoryRepository;
 import woojin.bookmaker.handler.service.user.UserRepository;
 import woojin.bookmaker.handler.service.category.Category;
-import woojin.bookmaker.handler.service.exception.BookmarkErrorCode;
-import woojin.bookmaker.handler.service.exception.CategoryErrorCode;
-import woojin.bookmaker.handler.service.exception.CustomException;
+import woojin.bookmaker.handler.service.category.CategoryErrorCode;
+import woojin.bookmaker.handler.service.CustomException;
 
 import java.util.List;
 

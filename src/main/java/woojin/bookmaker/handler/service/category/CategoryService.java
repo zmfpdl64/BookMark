@@ -4,8 +4,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import woojin.bookmaker.handler.service.bookmark.BookmarkRepository;
-import woojin.bookmaker.handler.service.exception.CategoryErrorCode;
-import woojin.bookmaker.handler.service.exception.CustomException;
+import woojin.bookmaker.handler.service.CustomException;
 import woojin.bookmaker.handler.service.user.UserRepository;
 
 import java.util.List;
