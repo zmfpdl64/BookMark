@@ -7,15 +7,28 @@ sequenceDiagram
 
     User->>Browser: 카테고리 생성 정보 입력
     Browser->>Server: 카테고리 생성 요청
-    Server->>DB: 카테고리 생성 요청
-    alt 유저 존재 X
-        Server->>Browser: 인증 실패(미구현)
-        Browser->>User: 카테고리 생성 실패
-    else 유저 존재 O
-        DB->>Server: 저장 완료
-        Server->>Browser: 생성 응답
-        Browser->>User: 화면 리다이렉트
-    end 
+    Server->>Server: 입력 값 유효성 검증
+    alt 입력 값 유효성 실패
+        Server->>Browser: 입력 값 오류 (400 Bad Request)
+        Browser->>User: 입력 오류 표시
+    else 입력 값 유효성 통과
+        Server->>DB: 카테고리 생성 요청
+        alt 유저 존재 X
+            Server->>Browser: 인증 실패 (401 Unauthorized)
+            Browser->>User: 카테고리 생성 실패
+        else 유저 존재 O
+            alt DB 오류 발생
+                DB->>Server: DB 오류 발생
+                Server->>Browser: DB 오류 응답 (500 Internal Server Error)
+                Browser->>User: 서버 오류 표시
+            else 정상 처리
+                DB->>Server: 저장 완료
+                Server->>Browser: 생성 성공 (201 Created)
+                Browser->>User: 화면 리다이렉트
+            end
+        end
+    end
+
 ``` 
 
 ### 제한사항

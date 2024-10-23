@@ -13,7 +13,27 @@
 - H2
 - Jpa
 
+### SpringBoot Server 실행 방법 
+1. Google OAuth2 생성하기
+2. 환경변수 적용하기
+[Google OAuth2 설정](https://velog.io/@zini9188/OAuth-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%EC%97%90-OAuth-2.0-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0)
 
+```yml
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ${CLIENT_ID}
+            client-secret: ${CLIENT_SECRET}
+            redirect-uri: ${REDIRECT_URI}
+            scope:
+              - email
+              - profile
+```
+생성하고 해당 환경변수를 설정해주어야 합니다.
+### 환경변수 설정 intellij 실행 방법
+![img_1.png](img_1.png)
 
 북마크 수집 페이지 만들기
 기능
@@ -48,7 +68,7 @@
 9. - [x] 카테고리 삭제 | 12시 ~ 13시 (1시간) [Flow 차트 확인](./DetailWork/DeleteCategory.md)
 10. - [x] 북마크 삭제 | 13시 40분 ~ 14시 10분 (30분) [Flow 차트 확인](./DetailWork/DeleteBookmark.md)
 11. - [x] 회원탈퇴 | 14시 15분 ~ 14시 37분 (22분) [Flow 차트 확인](./DetailWork/DeleteUser.md)
-12. - [ ] 인증/인가 Kakao OAuth 적용
+12. - [x] 인증/인가 Google OAuth 적용 3일 [Flow 차트 확인](./DetailWork/CreateOAuthUser.md)
 13. - [ ] 최근 사용 북마크
 14. - [ ] 북마크 검색
 15. - [ ] 북마크, 카테고리 순서 변경
