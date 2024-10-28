@@ -241,6 +241,8 @@ def start():
 
     출력(내_카테고리_생성)
     categoryId = int(내_카테고리_생성(userId))
+    내_카테고리_생성(userId)
+    내_카테고리_생성(userId)
 
     출력(내_카테고리들_가져오기)
     내_카테고리들_가져오기(userId)
@@ -264,8 +266,8 @@ def start():
     출력(내_카테고리_삭제)
     내_카테고리_삭제(userId, categoryId)
 
-    출력(회원탈퇴)
-    회원탈퇴(userId)
+    # 출력(회원탈퇴)
+    # 회원탈퇴(userId)
 
 while True:
     print("시나리오 선택지를 입력하시오")
