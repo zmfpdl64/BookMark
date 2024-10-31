@@ -1,7 +1,7 @@
 import Link from 'next/link';
-import { useState } from 'react'
 import { Bookmark, User } from 'lucide-react'
 import { Button } from "@/components/ui/button"
+import { clickSignUp } from './LoginService';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,7 +13,7 @@ import {
 
 interface NavbarProps {
   isLoggedIn:boolean
-  onStateChange: (newState: any) => void
+  onStateChange: (isAuthenticated: boolean, userId: number | null) => void
 }
 
 const Navbar = ( {isLoggedIn, onStateChange} : NavbarProps ) => {
@@ -55,15 +55,15 @@ const Navbar = ( {isLoggedIn, onStateChange} : NavbarProps ) => {
                       <DropdownMenuItem>
                         <Link href="/settings">설정</Link>
                       </DropdownMenuItem>
-                      <DropdownMenuItem onClick={() => onStateChange(false)}>
+                      <DropdownMenuItem onClick={() => onStateChange(false, 1)}>
                         로그아웃
                       </DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>
                 ) : (
                   <div className="space-x-2">
-                    <Button variant="ghost" onClick={() => onStateChange(true)}>로그인</Button>
-                    {/* <Button>회원가입</Button> */}
+                    <Button variant="ghost" onClick={() => clickSignUp()}>로그인</Button>
+                    <Button>회원가입</Button>
                   </div>
                 )}
               </div>

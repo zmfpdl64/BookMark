@@ -18,11 +18,17 @@ import {
     DialogTrigger,
     DialogFooter,
   } from "@/components/ui/dialog"
+interface BookmarksProps {
+  inUserId:number 
+  inCategoryId:number
+}
 
+function BookmarkCards({inUserId, inCategoryId} : BookmarksProps) {
+  const[userId, setUserId] = useState<number>(inUserId);
+  const[categoryId, setCategoryId] = useState<number>(inCategoryId);
+    useEffect(() => {
 
-function BookmarkCards(userId:any, categoryId:any) {
-    userId=Number("1")
-    categoryId=Number("1")
+    },[])
 
     const [bookmarks, setBookmarks] = useState<BookmarkItem[]>([])
     const [loading, setLoading] = useState<boolean>(true)

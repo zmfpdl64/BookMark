@@ -1,34 +1,46 @@
   "use client"
 
   import { useState, useEffect } from 'react'
-  import { Bookmark, Router } from 'lucide-react'
   import { Button } from "@/components/ui/button"
-  import Category from "./ui/Category" // 변경: Category.tsx 파일이 모듈로 내보내는지 확인 필요
   import Navbar from './ui/Navbar'
   import BookmarkSearch from './ui/BookmarkSearch'
   import { CategoryCards } from './ui/CategoryCards' // 변경: 기본 내보내기에서 명명된 내보내기로 수정
-  import { bookmarkService } from '@/pages/bookmarks/BookmarkService'
-  import BookmarkItem from 'pages/bookmarks/BookmarkItem'
   import BookmarkCards from './ui/BookmarkCards' // Bookmarks 컴포넌트 추가
   import Login from './ui/Login'
+  import { fetchAuthCode } from './ui/LoginService'
   
-  // import { useHistory } from 'react-router-dom';
 
   export function MainPageComponent() {
     const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
-    // const [bookmarks, setBookmarks] = useState<BookmarkItem[]>([])
-    const [selectedCategory, setSelectedCategory] = useState<number>(0) // 선택된 카테고리 ID 상태 추가
+  // typeof window !== "undefined" && !!localStorage.getItem('token')
+    const [isLoading, setIsLoading] = useState<boolean>(true);
+    const [selectedCategory, setSelectedCategory] = useState<number>(-1) // 선택된 카테고리 ID 상태 추가
     const [categoryId, setCategoryId] = useState<number>(1);
-    const userId = 1
+    const [userId, setUserId] = useState<number>(1);
 
     useEffect(() => {
-      
+      console.log(window.location.href);
+      const urlParams = new URLSearchParams(window.location.search);
+      const authCode = urlParams.get('code'); // 리디렉션 URL에서 코드 가져오기
+      const token = localStorage.getItem('token');
+
+      const handleAuth = async () => {
+        if (authCode && token === null) {
+          await fetchAuthCode(clickLogin); // 비동기 함수 호출
+        } else if (token !== null) {
+          setIsLoggedIn(true);
+          setSelectedCategory(1);
+        }
+        setIsLoading(false); // 로딩 상태를 false로 설정
+      };
+
+      handleAuth(); // 인증 처리 함수 호출
+
       return () => {
         setCategoryId(1);
-        setSelectedCategory(0);
       }
     }, []); // 빈 배열을 의존성 배열로 사용하여 컴포넌트 마운트 시 한 번만 실행
-    
+
     
     
     const clickCategory = (categoryId: number) => {
@@ -38,40 +50,82 @@
     const backToOrigin = () => {
       setSelectedCategory(1);
     };
-    const clickLogin = () => {
-      setIsLoggedIn(true);
-      setSelectedCategory(1);
-    }
-    const loginLogout = (isLoggedIn : boolean) => {
+    const clickLogin = (isLoggedIn : boolean, userId : number) => {
       setIsLoggedIn(isLoggedIn);
-      if(isLoggedIn === false) {
-        setSelectedCategory(0);
-      }else{
-        clickLogin()
+      setUserId(userId);
+      setSelectedCategory(1);
+      // if(isLoggedIn) {
+      //   setSelectedCategory(1);
+      // }
+    }
+    const loginLogout = (isLoggedIn : boolean, userId : number | null) => {
+      setIsLoggedIn(isLoggedIn);
+      if(isLoggedIn === true) {
         setSelectedCategory(1);
+        console.log(`userId: ${userId}`)
+        if(userId !== null) {
+          setUserId(userId);
+        }
+      }else{
+        console.log(`로그인 X`)
+        setSelectedCategory(0);
+        window.localStorage.removeItem('token');
+        // setUserId(userId);
       }
     }
+
+    // if(typeof window !== 'undefined' && isLoading === false) {
+    //   if(window.localStorage.getItem("token") !== null){
+    //     setIsLoggedIn(true);
+    //   }
+    // }
+    
+
+if(isLoading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex flex-col">
+        <div className="flex-grow flex items-center justify-center">
+          <div className="text-center">
+            <p className="text-xl font-semibold text-gray-600 animate-pulse">로딩 중...</p>
+          </div>
+        </div>
+      </div>
+    )
+  }
 
     return (
       <div className="min-h-screen bg-gray-50">
         <Navbar isLoggedIn={isLoggedIn} onStateChange={loginLogout} />
-        <main className="container mx-auto px-4 py-8">
+        
+        <main className="flex-grow container mx-auto px-4 py-8">
+        {isLoggedIn ? (
+          <div className="space-y-6">
           <BookmarkSearch />
-          {selectedCategory===0 && (
-            <Login onStateChange={clickLogin} action="signin"/> // 변경: "siginin"을 "signin"으로 수정
-          )}
-          {selectedCategory===1 && ( //category에서 이벤트 발생시 처리하는 로직 추가 
-            <CategoryCards inUserId={userId} onStateChage={clickCategory}/> 
-          )}
-          {selectedCategory===2 && (
-            <>
-              <Button variant="outline" className="w-full justify-start" onClick={backToOrigin}>
-                뒤로가기
-              </Button>
-              <BookmarkCards userId={userId} categoryId={categoryId} />
-            </>
-          )}
-        </main>
+            {selectedCategory === 1 && (
+              <>
+                <CategoryCards inUserId={userId} onStateChange={clickCategory} />
+              </>
+            )}
+            
+            {selectedCategory === 2 && (
+              <>
+                <Button
+                  variant="outline"
+                  className="mb-4 w-full flex items-center text-gray-600 hover:text-gray-800 transition-colors duration-200"
+                  onClick={backToOrigin}
+                >
+                  뒤로가기
+                </Button>
+                <BookmarkCards inUserId={userId} inCategoryId={categoryId} />
+              </>
+            )}
+          </div>
+        ) : (
+          <div className="mt-8">
+            <Login />
+          </div>
+        )}
+      </main>
       </div>
     )
   }
