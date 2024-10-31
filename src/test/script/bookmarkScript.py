@@ -230,6 +230,17 @@ def 내_북마크들_생성(userId, categoryId):
 def 출력(method):
     methodName = method.__name__
     print("\n\n========= "+ methodName + " ===========")
+
+def 구글유저테스트데이터주입(userId):
+    출력(내_카테고리_생성)
+    categoryId = int(내_카테고리_생성(userId))
+    내_북마크들_생성(userId, categoryId)
+    categoryId2 = int(내_카테고리_생성(userId))
+    내_북마크들_생성(userId, categoryId2)
+    categoryId3 = int(내_카테고리_생성(userId))
+    내_북마크들_생성(userId, categoryId3)
+
+
 def start():
     # global userId
     출력(회원가입)
@@ -241,8 +252,11 @@ def start():
 
     출력(내_카테고리_생성)
     categoryId = int(내_카테고리_생성(userId))
-    내_카테고리_생성(userId)
-    내_카테고리_생성(userId)
+    categoryId2 = int(내_카테고리_생성(userId))
+    내_북마크들_생성(userId, categoryId2)
+    categoryId3 = int(내_카테고리_생성(userId))
+    내_북마크들_생성(userId, categoryId3)
+
 
     출력(내_카테고리들_가져오기)
     내_카테고리들_가져오기(userId)
@@ -273,7 +287,8 @@ while True:
     print("시나리오 선택지를 입력하시오")
     print("1. Google OAuth 시나리오 선택시 1을 입력해주세요.")
     print("2. 일반 인증/인가 시나리오 선택 시 2를 입력해주세요")
-    print("3. 종료 시 q를 입력해주세요")
+    print("3. 유저 목데이터 주입 선택 시 3를 입력해주세요")
+    print("4. 종료 시 q를 입력해주세요")
     num = input().rstrip()
     if num=="1":
         구글로그인테스트()
@@ -281,6 +296,10 @@ while True:
     elif num=="2":
         start()
         print("실행")
+    elif num=="3":
+        print("유저의 ID를 입력해주세요: ")
+        userId = input().rstrip()
+        구글유저테스트데이터주입(userId)
     elif num=='q':
         print("종료")
         break
