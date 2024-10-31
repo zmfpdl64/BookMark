@@ -27,7 +27,7 @@ public class UserController {
 
     @GetMapping(path =  "/google/callback")
     public ResponseEntity<?> googleSignUp(@RequestParam("code") String code) {
-        log.info("로그인 \n token: {}", code);
+        log.info("로그인 : {}", code);
         CreateGoogleUserResponse response = CreateGoogleUserResponse.dtoToResponse(authHandler.oauthSignUp(code));
         return ResponseEntity.ok(response);
     }

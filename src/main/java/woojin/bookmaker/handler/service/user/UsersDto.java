@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import woojin.bookmaker.common.utils.DateUtils;
+import woojin.bookmaker.common.utils.PrintUtils;
 
 @Getter
 @Builder
@@ -26,5 +27,10 @@ public class UsersDto {
                 .updated(DateUtils.dateTimeToString(users.getUpdated()))
                 .deleted(users.getDeleted())
                 .build();
+    }
+
+    @Override
+    public String toString() {
+        return PrintUtils.print(this);
     }
 }

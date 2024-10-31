@@ -2,6 +2,7 @@ package woojin.bookmaker.handler.service.category;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import woojin.bookmaker.handler.service.bookmark.BookmarkRepository;
 import woojin.bookmaker.handler.service.CustomException;
@@ -9,6 +10,7 @@ import woojin.bookmaker.handler.service.user.UserRepository;
 
 import java.util.List;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class CategoryService {
@@ -37,6 +39,7 @@ public class CategoryService {
 
     @Transactional
     public CategoryDto updateCategory(Integer categoryId, Integer userId, String title) {
+        log.info("카테고리 업데이트: categoryId:{} , userId:{} title:{}", categoryId, userId, title);
         Category category = categoryRepository.getCategoryById(categoryId);
         if(category==null){
             throw new CustomException(CategoryErrorCode.NOT_EXISTS);
