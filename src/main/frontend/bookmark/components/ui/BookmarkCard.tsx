@@ -21,7 +21,7 @@ import {
 function BookmarkCard({ bookmark, onUpdate, onDelete }: { 
     bookmark: BookmarkItem, 
     onUpdate: (bookmark: BookmarkItem) => void,
-    onDelete: (id: number) => void
+    onDelete: (bookmark: BookmarkItem) => void
   }) {
     const [isEditDialogOpen, setIsEditDialogOpen] = useState(false)
     const [editedBookmark, setEditedBookmark] = useState(bookmark)
@@ -88,7 +88,7 @@ function BookmarkCard({ bookmark, onUpdate, onDelete }: {
               <Button variant="ghost" size="sm" onClick={() => setIsEditDialogOpen(true)}>
                 <Edit className="h-4 w-4" />
               </Button>
-              <Button variant="ghost" size="sm" onClick={() => onDelete(bookmark.id)}>
+              <Button variant="ghost" size="sm" onClick={() => onDelete(bookmark)}>
                 <Trash2 className="h-4 w-4" />
               </Button>
               <Button variant="ghost" size="sm" onClick={() => window.open(bookmark.link, '_blank')}>

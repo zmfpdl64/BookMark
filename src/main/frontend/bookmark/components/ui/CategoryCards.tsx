@@ -45,7 +45,7 @@ export function CategoryCards({inUserId, onStateChange}: CategoryProps) {
           const addedCategory = await response.json();
           console.log(addedCategory)
           setCategories([...categories, addedCategory]);
-          setUpdateCategoryName('');
+          setnewCategoryName('');
         }
     };
 
@@ -68,7 +68,7 @@ export function CategoryCards({inUserId, onStateChange}: CategoryProps) {
             )
           );
           setIsDialogOpen(false);
-          setnewCategoryName('');
+          setUpdateCategoryName('');
           console.log(categories);
           console.log("카테고리 수정");
           console.log(updatedCategory)
@@ -116,7 +116,7 @@ export function CategoryCards({inUserId, onStateChange}: CategoryProps) {
 
     return <Card>
     <CardHeader>
-        <CardTitle>내 카테고리</CardTitle>
+        <CardTitle className="text-center">내 카테고리</CardTitle>
     </CardHeader>
 
     <CardContent>

@@ -12,11 +12,10 @@
 
   export function MainPageComponent() {
     const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
-  // typeof window !== "undefined" && !!localStorage.getItem('token')
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [selectedCategory, setSelectedCategory] = useState<number>(-1) // 선택된 카테고리 ID 상태 추가
-    const [categoryId, setCategoryId] = useState<number>(1);
-    const [userId, setUserId] = useState<number>(1);
+    const [categoryId, setCategoryId] = useState<number>(null);
+    const [userId, setUserId] = useState<number>(null);
 
     useEffect(() => {
       console.log(window.location.href);
@@ -24,9 +23,9 @@
       const authCode = urlParams.get('code'); // 리디렉션 URL에서 코드 가져오기
       const token = localStorage.getItem('token');
 
-      const handleAuth = async () => {
+      const handleAuth = () => {
         if (authCode && token === null) {
-          await fetchAuthCode(clickLogin); // 비동기 함수 호출
+          fetchAuthCode(clickLogin); // 비동기 함수 호출
         } else if (token !== null) {
           setIsLoggedIn(true);
           setSelectedCategory(1);
