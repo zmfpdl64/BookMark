@@ -53,6 +53,7 @@ public class BookmarkService {
         return BookmarkDto.entityToDto(bookmark);
     }
 
+    @Transactional
     public BookmarkDto deleteBookmark(Integer userId, Integer bookmarkId) {
         Bookmark bookmark = bookmarkRepository.findById(bookmarkId).orElseThrow(() -> new CustomException(BookmarkErrorCode.NOT_EXISTS));
         if(bookmark.getUserId() != userId) {
