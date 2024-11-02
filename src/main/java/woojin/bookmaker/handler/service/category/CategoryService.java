@@ -51,8 +51,12 @@ public class CategoryService {
         return CategoryDto.entityToDto(category);
     }
 
+    @Transactional
     public CategoryDto deleteCategory(Integer userId, Integer categoryId) {
         Category category = categoryRepository.getCategoryById(categoryId);
+        if(category==null) {
+            throw new CustomException(CategoryErrorCode.NOT_EXISTS);
+        }
         if(category.getUserId() != userId) {
             throw new CustomException(CategoryErrorCode.NOT_AUTHORIZATION);
         }
