@@ -63,8 +63,8 @@ const Navbar = ( {isLoggedIn, onStateChange} : NavbarProps ) => {
                 ) : (
                   <div className="space-x-2">
                     <Button variant="ghost" onClick={() => clickSignUp()}>로그인</Button>
-                    <Button>회원가입</Button>
-                  </div>
+                    
+                  </div>  
                 )}
               </div>
             </div>

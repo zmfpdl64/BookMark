@@ -44,8 +44,9 @@ export const fetchAuthCode = async (onStateChange: (isAuthenticated: boolean, us
             console.log(data);
             const userId = Number(data.id)
             if(userId != undefined) {
-                window.localStorage.setItem("token", data.accessToken);
                 onStateChange(true,  userId);
+                localStorage.setItem("token", data.accessToken);
+                localStorage.setItem("userId", String(userId));
             }
             // 성공적으로 로그인하면 상태 업데이트
             

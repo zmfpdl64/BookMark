@@ -19,11 +19,13 @@ import {
     DialogFooter,
   } from "@/components/ui/dialog"
 interface BookmarksProps {
+  inCategoryName:string
   inUserId:number 
   inCategoryId:number
 }
 
-function BookmarkCards({inUserId, inCategoryId} : BookmarksProps) {
+function BookmarkCards({inCategoryName, inUserId, inCategoryId} : BookmarksProps) {
+  const[categoryTitle, setCategoryTitle] = useState<string>(inCategoryName);
   const[userId, setUserId] = useState<number>(inUserId);
   const[categoryId, setCategoryId] = useState<number>(inCategoryId);
     useEffect(() => {
@@ -48,7 +50,6 @@ function BookmarkCards({inUserId, inCategoryId} : BookmarksProps) {
         const bookmark = newBookmark;
         // 실제로는 서버에 POST 요청을 보내야 합니다.
         console.log(bookmark);
-
         const response = await fetch(`${baseUrl}`, {
           method: 'POST',
           headers: {'Content-Type' :'application/json'},
@@ -60,9 +61,9 @@ function BookmarkCards({inUserId, inCategoryId} : BookmarksProps) {
           })
         });
         const addedBookmark = await response.json();
+        console.log(addedBookmark);
         setBookmarks([...bookmarks, addedBookmark]);
         setIsCreateDialogOpen(false);
-        // return {...bookmark};
       }
       
       const updateBookmark = async (updateBookmark: BookmarkItem): Promise<BookmarkItem> => {
@@ -112,6 +113,7 @@ function BookmarkCards({inUserId, inCategoryId} : BookmarksProps) {
       }
 
     useEffect(() => {
+      console.log(categoryTitle)
     if (!userId || !categoryId) return
     getBookmarks()
   }, [userId, categoryId])
@@ -278,7 +280,7 @@ function BookmarkCards({inUserId, inCategoryId} : BookmarksProps) {
                 </div>
                 
               
-                <h1 className="text-4xl text-center font-bold text-gray-900 mb-8"> 북마크</h1>
+                <h1 className="text-4xl text-center font-bold text-gray-900 mb-8">{categoryTitle} 북마크</h1>
                   <div className={viewMode === 'card' ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" : "space-y-4"}>
                     {bookmarks.map((bookmark) => (
                     <BookmarkCard 

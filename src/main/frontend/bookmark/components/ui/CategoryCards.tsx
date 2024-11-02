@@ -17,7 +17,7 @@ import {
 
 interface CategoryProps {
     inUserId:number
-    onStateChange:(newState:any) => void
+    onStateChange:(categornName:string, categoryId:number) => void
 }
 
 export function CategoryCards({inUserId, onStateChange}: CategoryProps) {
@@ -92,6 +92,7 @@ export function CategoryCards({inUserId, onStateChange}: CategoryProps) {
       
       const deleteCategory = async (categoryId: number) => {
           // 서버에 카테고리 삭제 요청
+          console.log(`카테고리 삭제 userId:${userId} , categoryId:${categoryId}`)
           if (window.confirm("정말로 카테고리를 삭제하시겠습니까?")) { // 확인 대화 상자 추가
             const response = await fetch(`${baseUrl}`, {
                 method: 'DELETE',
@@ -123,7 +124,7 @@ export function CategoryCards({inUserId, onStateChange}: CategoryProps) {
         <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {categories?.map((category) => (
             <li key={category.id} className="flex items-center space-x-2">
-            <Button variant="outline" className="w-full justify-start" onClick={() => onStateChange(category.id)}>
+            <Button variant="outline" className="w-full justify-start" onClick={() => onStateChange(category.title, category.id)}>
                 <Bookmark className="mr-2 h-4 w-4" />
                 {category.title}
             </Button>

@@ -13,7 +13,8 @@
   export function MainPageComponent() {
     const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
     const [isLoading, setIsLoading] = useState<boolean>(true);
-    const [selectedCategory, setSelectedCategory] = useState<number>(-1) // 선택된 카테고리 ID 상태 추가
+    const [selectedCategory, setSelectedCategory] = useState<number>(null) // 선택된 카테고리 ID 상태 추가
+    const [categoryTitle, setCategoryTitle] = useState<string>(null);
     const [categoryId, setCategoryId] = useState<number>(null);
     const [userId, setUserId] = useState<number>(null);
 
@@ -28,6 +29,7 @@
           fetchAuthCode(clickLogin); // 비동기 함수 호출
         } else if (token !== null) {
           setIsLoggedIn(true);
+          setUserId(Number(localStorage.getItem("userId")))
           setSelectedCategory(1);
         }
         setIsLoading(false); // 로딩 상태를 false로 설정
@@ -41,21 +43,21 @@
     }, []); // 빈 배열을 의존성 배열로 사용하여 컴포넌트 마운트 시 한 번만 실행
 
     
+
     
-    const clickCategory = (categoryId: number) => {
+    const clickCategory = (categoryTitle:string, categoryId: number) => {
       setCategoryId(categoryId); // 클릭한 categoryId로 상태 업데이트
+      setCategoryTitle(categoryTitle);
       setSelectedCategory(2);
     };
     const backToOrigin = () => {
       setSelectedCategory(1);
     };
     const clickLogin = (isLoggedIn : boolean, userId : number) => {
+      console.log(`isLoggedIn: ${isLoggedIn} , userId: ${userId}`)
       setIsLoggedIn(isLoggedIn);
       setUserId(userId);
       setSelectedCategory(1);
-      // if(isLoggedIn) {
-      //   setSelectedCategory(1);
-      // }
     }
     const loginLogout = (isLoggedIn : boolean, userId : number | null) => {
       setIsLoggedIn(isLoggedIn);
@@ -69,6 +71,7 @@
         console.log(`로그인 X`)
         setSelectedCategory(0);
         window.localStorage.removeItem('token');
+        window.localStorage.removeItem('userId');
         // setUserId(userId);
       }
     }
@@ -115,7 +118,7 @@ if(isLoading) {
                 >
                   뒤로가기
                 </Button>
-                <BookmarkCards inUserId={userId} inCategoryId={categoryId} />
+                <BookmarkCards inCategoryName={categoryTitle} inUserId={userId} inCategoryId={categoryId} />
               </>
             )}
           </div>
