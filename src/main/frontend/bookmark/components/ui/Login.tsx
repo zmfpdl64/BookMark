@@ -1,12 +1,9 @@
 "use client"
 
-import { useState, useEffect } from 'react'
-import { Bookmark, Search, User, LogOut, UserPlus } from 'lucide-react'
+import { User } from 'lucide-react'
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import {clickSignUp, fetchAuthCode} from './LoginService'
-import Link from 'next/link'
+import {clickSignUp} from './LoginService'
 
 
 export default function Login() {

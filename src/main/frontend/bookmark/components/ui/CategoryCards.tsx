@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import Category from './Category'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Bookmark, Pencil, Search, User, Edit, Trash, Plus } from 'lucide-react'
+import { Bookmark, Pencil, Trash, Plus } from 'lucide-react'
 import { Label } from "@/components/ui/label"
 import {
     Dialog,

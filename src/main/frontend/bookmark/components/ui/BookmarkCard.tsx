@@ -1,12 +1,12 @@
 "use client"
-import { useState, useEffect }  from 'react'
+import { useState }  from 'react'
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import Image from 'next/image'; // Next.js의 Image 컴포넌트를 가져옵니다.
-import { ArrowLeft, Bookmark, ExternalLink, Edit, Trash2, Plus } from 'lucide-react'
-import BookmarkItem from 'pages/bookmarks/BookmarkItem'
+import { Bookmark, ExternalLink, Edit, Trash2 } from 'lucide-react'
+import BookmarkItem from '@/components/ui/BookmarkItem'
 import {
     Dialog,
     DialogContent,

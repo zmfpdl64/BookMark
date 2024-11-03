@@ -1,4 +1,4 @@
-import BookmarkItem from './BookmarkItem';
+import BookmarkItem from '../../components/ui/BookmarkItem';
 
 class BookmarkService {
     private baseUrl: string;

@@ -1,18 +1,15 @@
 import { useState, useEffect } from 'react';
-import Image from 'next/image'; // Next.js의 Image 컴포넌트를 가져옵니다.
-import Link from 'next/link'; // Next.js의 Link 컴포넌트를 가져옵니다.
-import BookmarkItem from 'pages/bookmarks/BookmarkItem'
+import BookmarkItem from '@/components/ui/BookmarkItem'
 import BookmarkCard from 'components/ui/BookmarkCard'
-import { ArrowLeft, Bookmark, ExternalLink, Edit, Trash2, Plus } from 'lucide-react'
-import { bookmarkService } from '@/pages/bookmarks/BookmarkService';
+import { Plus } from 'lucide-react'
+import { bookmarkService } from '@/components/ui/BookmarkService';
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import {
     Dialog,
     DialogContent,
-    DialogDescription,
+    // DialogDescription,
     DialogHeader,
     DialogTitle,
     DialogTrigger,
@@ -40,8 +37,8 @@ function BookmarkCards({inCategoryName, inUserId, inCategoryId} : BookmarksProps
     });
     const [loading, setLoading] = useState<boolean>(true)
     const [error, setError] = useState<string | null>(null)
-    const [searchTerm] = useState("")
-    const [editedBookmark, setEditedBookmark] = useState<BookmarkItem | null>(null); // 수정된 북마크 상태 추가
+    // const [searchTerm] = useState("")
+    // const [editedBookmark, setEditedBookmark] = useState<BookmarkItem | null>(null); // 수정된 북마크 상태 추가
     const [viewMode, setViewMode] = useState<'card' | 'list'>('card')
     const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false)
     const baseUrl = 'http://localhost:8080/bookmark'

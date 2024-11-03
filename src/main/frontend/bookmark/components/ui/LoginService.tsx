@@ -17,17 +17,6 @@ export const clickSignUp = () => {
     const googleOAuthUrl = googleUrl + '?' + params.toString();
     window.location.href = googleOAuthUrl;
 };
-export const clickSignIn = () => {
-    const params = new URLSearchParams({
-        scope: 'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email',
-        access_type: 'online',
-        include_granted_scopes: 'true',
-        response_type: 'code',
-        redirect_uri: redirectUrl,
-        client_id: clientId,
-        prompt: 'none'
-    });
-}
 
 export const fetchAuthCode = async (onStateChange: (isAuthenticated: boolean, userId: number | null) => void) => {
     const urlParams = new URLSearchParams(window.location.search);
