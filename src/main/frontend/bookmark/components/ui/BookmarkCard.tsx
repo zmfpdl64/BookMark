@@ -20,14 +20,20 @@ import {
 
 function BookmarkCard({ bookmark, onUpdate, onDelete }: { 
     bookmark: BookmarkItem, 
-    onUpdate: (bookmark: BookmarkItem) => void,
+    onUpdate: (bookmark: BookmarkItem) => Promise<void>,
     onDelete: (bookmark: BookmarkItem) => void
   }) {
     const [isEditDialogOpen, setIsEditDialogOpen] = useState(false)
     const [editedBookmark, setEditedBookmark] = useState(bookmark)
   
-    const handleUpdate = () => {
-      onUpdate(editedBookmark)
+    const handleKeyDown = async (e: React.KeyboardEvent<HTMLInputElement>, callback: () => Promise<void>) => {
+        if (e.key === 'Enter') {
+            await callback(); // Enter 키 누를 때 createCategory 함수 실행
+        }
+      };
+
+    const handleUpdate = async () => {
+      await onUpdate(editedBookmark)
       setIsEditDialogOpen(false)
     }
   
@@ -111,6 +117,7 @@ function BookmarkCard({ bookmark, onUpdate, onDelete }: {
                   id="edit-title"
                   value={editedBookmark.title}
                   onChange={(e) => setEditedBookmark({...editedBookmark, title: e.target.value})}
+                  onKeyDown={e => handleKeyDown(e, handleUpdate)}
                   className="col-span-3"
                 />
               </div>
@@ -122,6 +129,7 @@ function BookmarkCard({ bookmark, onUpdate, onDelete }: {
                   id="edit-url"
                   value={editedBookmark.link}
                   onChange={(e) => setEditedBookmark({...editedBookmark, link: e.target.value})}
+                  onKeyDown={e => handleKeyDown(e, () => onUpdate(bookmark))}
                   className="col-span-3"
                 />
               </div>
@@ -133,6 +141,7 @@ function BookmarkCard({ bookmark, onUpdate, onDelete }: {
                   id="edit-imageUrl"
                   value={editedBookmark.imageUrl || ''}
                   onChange={(e) => setEditedBookmark({...editedBookmark, imageUrl: e.target.value})}
+                  onKeyDown={e => handleKeyDown(e, () => onUpdate(bookmark))}
                   className="col-span-3"
                 />
               </div>

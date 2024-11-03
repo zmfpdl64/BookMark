@@ -22,9 +22,9 @@ interface BookmarksProps {
 }
 
 function BookmarkCards({inCategoryName, inUserId, inCategoryId} : BookmarksProps) {
-  const[categoryTitle, setCategoryTitle] = useState<string>(inCategoryName);
-  const[userId, setUserId] = useState<number>(inUserId);
-  const[categoryId, setCategoryId] = useState<number>(inCategoryId);
+  const[categoryTitle] = useState<string>(inCategoryName);
+  const[userId] = useState<number>(inUserId);
+  const[categoryId] = useState<number>(inCategoryId);
     useEffect(() => {
 
     },[])
@@ -63,7 +63,7 @@ function BookmarkCards({inCategoryName, inUserId, inCategoryId} : BookmarksProps
         setIsCreateDialogOpen(false);
       }
       
-      const updateBookmark = async (updateBookmark: BookmarkItem): Promise<BookmarkItem> => {
+      const updateBookmark = async (updateBookmark: BookmarkItem): Promise<void> => {
         // 실제로는 서버에 PUT 요청을 보내야 합니다.
         console.log(updateBookmark);
 
@@ -82,9 +82,6 @@ function BookmarkCards({inCategoryName, inUserId, inCategoryId} : BookmarksProps
         setBookmarks(
           bookmarks.map( bm => bm.id === updateBookmark.id ? updatedBookmark : bm
         ));
-        
-
-        return updatedBookmark;
       }
       
       const deleteBookmark = async (deleteBookmark: BookmarkItem): Promise<void> => {
