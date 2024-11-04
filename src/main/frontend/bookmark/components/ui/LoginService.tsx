@@ -1,6 +1,6 @@
 // LoginService.ts
 const googleUrl = 'https://accounts.google.com/o/oauth2/v2/auth';
-const redirectUrl = 'http://localhost:3000'; // 실제 Google Cloud Console에 등록한 리디렉션 URL로 변경
+const redirectUrl = 'http://kbookmark.co.kr'; // 실제 Google Cloud Console에 등록한 리디렉션 URL로 변경
 const clientId = '227716410232-dkede9udod9f1vs33tbk6g360dmpegv6.apps.googleusercontent.com'; // 실제 Client ID로 변경
 
 export const clickSignUp = () => {
@@ -23,7 +23,7 @@ export const fetchAuthCode = async (onStateChange: (isAuthenticated: boolean, us
     const authCode = urlParams.get('code'); // 리디렉션 URL에서 코드 추출
 
     if (authCode) {
-        const callBackUrl = "http://localhost:8080/user/google/callback";
+        const callBackUrl = "http://kbookmark.co.kr:8080/user/google/callback";
         // const param = new URLSearchParams({ code: authCode });
         const response = await fetch(`${callBackUrl}?code=${authCode}`);
         

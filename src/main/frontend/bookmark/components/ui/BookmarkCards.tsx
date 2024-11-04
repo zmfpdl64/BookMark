@@ -41,7 +41,7 @@ function BookmarkCards({inCategoryName, inUserId, inCategoryId} : BookmarksProps
     // const [editedBookmark, setEditedBookmark] = useState<BookmarkItem | null>(null); // 수정된 북마크 상태 추가
     const [viewMode, setViewMode] = useState<'card' | 'list'>('card')
     const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false)
-    const baseUrl = 'http://localhost:8080/bookmark'
+    const baseUrl = 'http://kbookmark.co.kr:8080/bookmark'
 
     const createBookmark = async () : Promise<void> => {
         const bookmark = newBookmark;

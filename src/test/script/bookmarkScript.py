@@ -2,7 +2,7 @@ import webbrowser, requests, random, json, sys
 input = sys.stdin.readline
 
 
-base = "http://localhost:8080"
+base = "http://www.kbookmark.co.kr:8080"
 userUrl = base + "/user"
 categoryUrl = base + "/category"
 bookmarkUrl = base + "/bookmark"

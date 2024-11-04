@@ -1,15 +1,18 @@
 spring:
   datasource:
-    url: jdbc:h2:mem:test
-    username: sa
-    password:
-  h2:
-    console:
-      enabled: true  # H2 Console? ???? ?? (H2 Console? H2 Database? UI? ????? ??)
-      path: /h2-console  # H2 Console? Path
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+#    url: jdbc:h2:mem:test
+#    username: sa
+#    password:
+#  h2:
+#    console:
+#      enabled: true  # H2 Console? ???? ?? (H2 Console? H2 Database? UI? ????? ??)
+#      path: /h2-console  # H2 Console? Path
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     properties:
       hibernate:
         #        show_sql: true
