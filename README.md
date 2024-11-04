@@ -22,11 +22,6 @@
 [Google OAuth2 설정](https://velog.io/@zini9188/OAuth-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%EC%97%90-OAuth-2.0-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0)
 
 ```yml
-spring:
-  datasource:
-    url: ${DB_URL}
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}  
   security:
     oauth2:
       client:
@@ -40,8 +35,6 @@ spring:
               - profile
 ```
 생성하고 해당 환경변수를 설정해주어야 합니다.
-h2 DB를 활성화 하셔서 사용해도 좋고 취향에 맞는 DB를 설정하셔도 좋습니다.
-
 ### 환경변수 설정 intellij 실행 방법
 ![img_1.png](img_1.png)
 
