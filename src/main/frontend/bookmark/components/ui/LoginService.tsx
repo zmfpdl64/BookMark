@@ -23,7 +23,7 @@ export const fetchAuthCode = async (onStateChange: (isAuthenticated: boolean, us
     const authCode = urlParams.get('code'); // 리디렉션 URL에서 코드 추출
 
     if (authCode) {
-        const callBackUrl = "http://kbookmark.co.kr:8080/user/google/callback";
+        const callBackUrl = "https://kbookmark.co.kr/api/user/google/callback";
         // const param = new URLSearchParams({ code: authCode });
         const response = await fetch(`${callBackUrl}?code=${authCode}`);
         

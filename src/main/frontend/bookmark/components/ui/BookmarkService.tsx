@@ -3,7 +3,7 @@ import BookmarkItem from '../../components/ui/BookmarkItem';
 class BookmarkService {
     private baseUrl: string;
 
-    constructor(baseUrl: string = 'http://kbookmark.co.kr:8080/bookmark') {
+    constructor(baseUrl: string = 'https://kbookmark.co.kr/api/bookmark') {
         this.baseUrl = baseUrl;
     }
 

@@ -21,7 +21,7 @@ interface CategoryProps {
 }
 
 export function CategoryCards({inUserId, onStateChange}: CategoryProps) {
-    const baseUrl = 'http://kbookmark.co.kr:8080/category'
+    const baseUrl = 'https://kbookmark.co.kr/api/category'
     const [userId, setUserId] = useState<number>(inUserId);
     const [isDialogOpen, setIsDialogOpen] = useState(false)
     const [editingCategory, setEditingCategory] = useState<Category | null>(null);
