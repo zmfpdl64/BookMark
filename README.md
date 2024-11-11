@@ -187,3 +187,6 @@ service에서는 entity의 최대한의 정보를 반환하고 adaptor계층에�
 2. Python 인터프리터를 설정해주세요 [블로그](https://jojoldu.tistory.com/465)
 3. 스크립트를 실행하면 연속된 스크립트를 실행할 수 있습니다
 
+![image](https://github.com/user-attachments/assets/230b9ee4-3cbb-4256-904b-a94d9a9f815a)
+<br>
+스크립트는 test 폴더에 있습니다. Mock데이터를 쉽게 주입할 수 있습니다.
