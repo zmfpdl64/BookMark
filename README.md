@@ -68,7 +68,7 @@ h2 DB를 활성화 하셔서 사용해도 좋고 취향에 맞는 DB를 설정�
 
 우선순위
 ### 백엔드
-1. - [x] 유저 생성 | 1시간 30분 (exception handler 추가)
+1. - [x] 유저 생성 | 1시간 30분 (exception Adaptor 추가)
 2. - [x] 카테고리 생성 | 13시 54분 ~ 14시 39분 (45분) [Flow 차트 확인](./DetailWork/CreateCategory.md)
 3. - [x] 북마크 생성 | 14시 40분 ~ 15시 54분 (1시간 14분) [Flow 차트 확인](./DetailWork/CreateBookmark.md)
 4. - [x] 카테고리들 읽기 | 1시간 20분
@@ -112,20 +112,28 @@ h2 DB를 활성화 하셔서 사용해도 좋고 취향에 맞는 DB를 설정�
    6. - [x] 북마크 삭제
 <br>
 - 7일 소요
+
+### 인프라 Setting 
+- [x] 서버환경 세팅
+- [x] 포트 포워딩 세팅 (공인 IP -> 개인 IP)
+- [x] 도메인 적용 (https://kbookmark.co.kr)
+- [x] Https 적용 (Certbot, Nginx)  
+
+# 1차 배포 완료 2024.11.03
+
 ---
 
 
 ### 프론트 작업 후 작업 예정
 13. - [ ] 인증/인가 고도화
     1. - [ ] UserId가 아닌 Token을 통해 권한 인증 
-14. - [ ] 배포에 필요한 인프라 및 배포
-15. - [ ] 북마크 모음집 실행하기
-16. - [ ] 북마크, 카테고리 순서 변경
-17. - [ ] 북마크 검색
-18. - [ ] 최근 사용 북마크
-19. - [ ] 북마크 추천 기능
-20. - [ ] 북마크 공유 기능
-21. - [ ] 북마크 공동 수정 기능
+14. - [ ] 북마크 모음집 실행하기
+15. - [ ] 북마크, 카테고리 순서 변경
+16. - [ ] 북마크 검색
+17. - [ ] 최근 사용 북마크
+18. - [ ] 북마크 추천 기능
+19. - [ ] 북마크 공유 기능
+20. - [ ] 북마크 공동 수정 기능
 
 
 
@@ -154,24 +162,24 @@ bookmaker
 │   ├── BookmarkController.java
 │   ├── CategoryController.java
 │   └── UserController.java
-├── handler
+├── Adaptor
 │   └── service
 │       ├── bookmark
 │       ├── category
 │       ├── oauth
 │       └── user
 │   └── UserAuthDto.java
-│   └── UserAuthHandler.java
+│   └── UserAuthAdaptor.java
 └── BookmakerApplication.java
 ```
 - common 패키지는 전역적으로 사용하는 클래스입니다.
-- handler 클래스는 여러개의 서비스 클래스를 통합하는 클래스로 비즈니스를 실행시키는 클래스 계층입니다.
+- Adaptor 클래스는 여러개의 서비스 클래스를 통합하는 클래스로 비즈니스를 실행시키는 클래스 계층입니다.
 이 방식은 서비스끼리의 참조를 하는 참조 순환으로부터 안정적인 특징을 가지고 있습니다.
-    - service 클래스는 각각의 도메인에서 수행되는 로직들을 작성했으며 root agregate 개념은 적용하지 않았습니다. 
+    - 초기 개발은 변경이 많으므로 public과 private을 사용하여 개발했으며 protected를 사용하지 않았습니다. 
 - controller 패키지의 역할은 입력, 출력, 유효성 검증의 역할을 하고 있다고 생각하기 때문에 분리하게 됐습니다.
 
 각각의 계층에서 dto클래스들을 둔것은 각각의 계층의 변화로부터 영향을 최소화 하기 위함입니다.
-service에서는 entity의 최대한의 정보를 반환하고 handler계층에서는 여러 도메인의 데이터를 통합해야할 때 
+service에서는 entity의 최대한의 정보를 반환하고 adaptor계층에서는 여러 도메인의 데이터를 통합해야할 때 
 병합하고 데이터를 반환하고 controller에서는 필요한 데이터만을 전달하도록 설계했습니다.
 
 ## Python 스크립트로 테스트하기
