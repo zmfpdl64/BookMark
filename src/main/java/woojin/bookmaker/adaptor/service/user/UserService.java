@@ -1,9 +1,9 @@
-package woojin.bookmaker.handler.service.user;
+package woojin.bookmaker.adaptor.service.user;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import woojin.bookmaker.handler.service.CustomException;
+import woojin.bookmaker.adaptor.service.CustomException;
 
 @Service
 @RequiredArgsConstructor

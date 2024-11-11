@@ -1,4 +1,4 @@
-package woojin.bookmaker.handler.service.bookmark;
+package woojin.bookmaker.adaptor.service.bookmark;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

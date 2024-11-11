@@ -3,7 +3,7 @@ package woojin.bookmaker.controller.response.create;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import woojin.bookmaker.handler.service.bookmark.BookmarkDto;
+import woojin.bookmaker.adaptor.service.bookmark.BookmarkDto;
 
 @Builder
 @AllArgsConstructor

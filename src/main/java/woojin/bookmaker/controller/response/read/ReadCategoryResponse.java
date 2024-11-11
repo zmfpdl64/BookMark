@@ -3,7 +3,7 @@ package woojin.bookmaker.controller.response.read;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import woojin.bookmaker.handler.service.category.CategoryDto;
+import woojin.bookmaker.adaptor.service.category.CategoryDto;
 
 @Builder
 @Getter

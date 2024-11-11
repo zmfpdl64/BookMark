@@ -1,4 +1,4 @@
-package woojin.bookmaker.handler.service;
+package woojin.bookmaker.adaptor.service;
 
 public interface ErrorCode {
     Integer getStatus();

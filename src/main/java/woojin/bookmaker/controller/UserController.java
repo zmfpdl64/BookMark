@@ -13,8 +13,8 @@ import woojin.bookmaker.controller.response.create.CreateGoogleUserResponse;
 import woojin.bookmaker.controller.response.create.CreateUserResponse;
 import woojin.bookmaker.controller.response.delete.DeleteUserResponse;
 import woojin.bookmaker.controller.response.update.UpdateUserResponse;
-import woojin.bookmaker.handler.UserAuthHandler;
-import woojin.bookmaker.handler.service.user.UserService;
+import woojin.bookmaker.adaptor.UserAuthAdaptor;
+import woojin.bookmaker.adaptor.service.user.UserService;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -23,7 +23,7 @@ import woojin.bookmaker.handler.service.user.UserService;
 public class UserController {
 
     private final UserService userService;
-    private final UserAuthHandler authHandler;
+    private final UserAuthAdaptor authHandler;
 
     @GetMapping(path =  "/google/callback")
     public ResponseEntity<?> googleSignUp(@RequestParam("code") String code) {

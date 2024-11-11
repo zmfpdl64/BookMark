@@ -1,4 +1,4 @@
-package woojin.bookmaker.handler.service.category;
+package woojin.bookmaker.adaptor.service.category;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

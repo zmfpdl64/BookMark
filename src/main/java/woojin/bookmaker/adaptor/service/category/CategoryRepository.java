@@ -1,4 +1,4 @@
-package woojin.bookmaker.handler.service.category;
+package woojin.bookmaker.adaptor.service.category;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

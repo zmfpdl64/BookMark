@@ -3,7 +3,7 @@ package woojin.bookmaker.controller.response.create;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import woojin.bookmaker.handler.UserAuthDto;
+import woojin.bookmaker.adaptor.UserAuthDto;
 
 @Getter
 @Builder

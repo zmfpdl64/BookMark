@@ -1,4 +1,4 @@
-package woojin.bookmaker.handler.service.oauth;
+package woojin.bookmaker.adaptor.service.oauth;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;

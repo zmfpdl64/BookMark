@@ -1,7 +1,7 @@
 package woojin.bookmaker.controller.response.create;
 
 import lombok.*;
-import woojin.bookmaker.handler.service.user.UsersDto;
+import woojin.bookmaker.adaptor.service.user.UsersDto;
 
 @Getter
 @Builder

@@ -1,9 +1,9 @@
-package woojin.bookmaker.handler.service.category;
+package woojin.bookmaker.adaptor.service.category;
 
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import woojin.bookmaker.handler.service.ErrorCode;
+import woojin.bookmaker.adaptor.service.ErrorCode;
 
 @RequiredArgsConstructor
 public enum CategoryErrorCode implements ErrorCode {

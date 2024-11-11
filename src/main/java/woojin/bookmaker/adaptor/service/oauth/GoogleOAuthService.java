@@ -1,4 +1,4 @@
-package woojin.bookmaker.handler.service.oauth;
+package woojin.bookmaker.adaptor.service.oauth;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;

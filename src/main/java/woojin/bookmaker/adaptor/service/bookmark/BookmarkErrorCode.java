@@ -1,8 +1,8 @@
-package woojin.bookmaker.handler.service.bookmark;
+package woojin.bookmaker.adaptor.service.bookmark;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import woojin.bookmaker.handler.service.ErrorCode;
+import woojin.bookmaker.adaptor.service.ErrorCode;
 
 
 @RequiredArgsConstructor

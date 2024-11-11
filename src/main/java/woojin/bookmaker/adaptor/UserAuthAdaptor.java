@@ -1,20 +1,19 @@
-package woojin.bookmaker.handler;
+package woojin.bookmaker.adaptor;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import woojin.bookmaker.handler.service.CustomException;
-import woojin.bookmaker.handler.service.oauth.GoogleTokenInfo;
-import woojin.bookmaker.handler.service.user.UserErrorCode;
-import woojin.bookmaker.handler.service.user.UsersDto;
-import woojin.bookmaker.handler.service.oauth.GoogleOAuthService;
-import woojin.bookmaker.handler.service.oauth.GoogleUserInfo;
-import woojin.bookmaker.handler.service.user.UserService;
+import woojin.bookmaker.adaptor.service.CustomException;
+import woojin.bookmaker.adaptor.service.oauth.GoogleTokenInfo;
+import woojin.bookmaker.adaptor.service.user.UsersDto;
+import woojin.bookmaker.adaptor.service.oauth.GoogleOAuthService;
+import woojin.bookmaker.adaptor.service.oauth.GoogleUserInfo;
+import woojin.bookmaker.adaptor.service.user.UserService;
 
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class UserAuthHandler {
+public class UserAuthAdaptor {
     private final UserService userService;
     private final GoogleOAuthService googleOAuthService;
 

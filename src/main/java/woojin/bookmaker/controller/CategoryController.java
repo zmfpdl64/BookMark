@@ -11,8 +11,8 @@ import woojin.bookmaker.controller.response.create.CreateCategoryResponse;
 import woojin.bookmaker.controller.response.delete.DeleteCategoryResponse;
 import woojin.bookmaker.controller.response.read.ReadCategoryResponse;
 import woojin.bookmaker.controller.response.update.UpdateCategoryResponse;
-import woojin.bookmaker.handler.service.category.CategoryDto;
-import woojin.bookmaker.handler.service.category.CategoryService;
+import woojin.bookmaker.adaptor.service.category.CategoryDto;
+import woojin.bookmaker.adaptor.service.category.CategoryService;
 
 import java.util.List;
 

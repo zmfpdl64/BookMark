@@ -1,8 +1,8 @@
-package woojin.bookmaker.handler.service.user;
+package woojin.bookmaker.adaptor.service.user;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import woojin.bookmaker.handler.service.ErrorCode;
+import woojin.bookmaker.adaptor.service.ErrorCode;
 
 @RequiredArgsConstructor
 public enum UserErrorCode implements ErrorCode {
