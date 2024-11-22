@@ -56,8 +56,8 @@ jobs:
       uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.HOST }}
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
-        username: root
+        username: ${{ secrets.UBUNTU_USERNAME }}
+        password: ${{ secrets.UBUNTU_PASSWORD }}
         port: 22
         script: |
            sudo docker stop $(sudo docker ps -q)
