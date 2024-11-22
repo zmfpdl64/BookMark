@@ -64,4 +64,4 @@ jobs:
           echo "${{ secrets.UBUNTU_PASSWORD }}" | sudo -S docker rm prod-server
           echo "${{ secrets.UBUNTU_PASSWORD }}" | sudo -S docker image rm ${{ secrets.DOCKER_REPO }}
           echo "${{ secrets.UBUNTU_PASSWORD }}" | sudo -S docker pull ${{ secrets.DOCKER_REPO }}
-          echo "${{ secrets.UBUNTU_PASSWORD }}" | sudo -S docker run -d -p 8080:8080 -p 8088:8088 ${{ secrets.DOCKER_REPO }}
+          echo "${{ secrets.UBUNTU_PASSWORD }}" | sudo -S docker run -d --name prod-server -p 8080:8080 ${{ secrets.DOCKER_REPO }}
