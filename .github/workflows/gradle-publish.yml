@@ -1,0 +1,75 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+# This workflow will build a package using Gradle and then publish it to GitHub packages when a release is created
+# For more information see: https://github.com/actions/setup-java/blob/main/docs/advanced-usage.md#Publishing-using-gradle
+
+name: Gradle Package
+
+on:
+  push:
+    branches: [ "main" ]
+# env:
+#   SECRET_KEY_SOURCE: ${{ secrets.SECRET_KEY_SOURCE }}  
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
+        settings-path: ${{ github.workspace }} # location for the settings.xml file
+
+    - name: Set Yaml
+      uses: microsoft/variable-substitution@v1
+      with:
+        files: ./src/main/resources/application.yml
+      env:
+        DB_URL: ${{ secrets.DB_URL }}
+        DB_USERNAME: ${{ secrets.DB_USERNAME }}
+        DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+        CLIENT_ID: ${{ secrets.CLIENT_ID }}
+        CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+        REDIRECT_URI: ${{ secrets.REDIRECT_URI }}
+
+        # secret-key-source: ${{ secrets.SECRET_KEY_SOURCE }}
+    - name: Build with Gradle
+      run: |
+        chmod +x gradlew
+        ./gradlew bootJar
+     
+          ## 도커 이미지 빌드 후 도커허브에 push하기
+    - name: web docker build and push
+      run: |
+        docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+        docker build -t ${{ secrets.DOCKER_REPO }} -f Dockerfile .
+        docker push ${{ secrets.DOCKER_REPO }}
+
+
+    ## 서버에 접속하여 도커 이미지를 pull 받고 실행하기
+    - name: executing remote ssh commands using password
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        username: root
+        port: 22
+        script: |
+           sudo docker stop $(sudo docker ps -q)
+           sudo docker rm prod-server
+           sudo docker image rm ${{ secrets.DOCKER_REPO }}
+           sudo docker pull ${{ secrets.DOCKER_REPO }}
+           sudo docker run -d -p 8080:8080 -p 8088:8088 ${{ secrets.DOCKER_REPO }}
