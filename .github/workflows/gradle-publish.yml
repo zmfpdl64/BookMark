@@ -34,16 +34,16 @@ jobs:
         spring:
           datasource:
             url: ${{ secrets.DB_URL }}
-            username: ${{ secrets.DB_USERNAME }}
-            password: ${{ secrets.DB_PASSWORD }}
-        security:
-          oauth2:
-            client:
-              registration:
-                google:
-                  client-id: ${{ secrets.CLIENT_ID }}
-                  client-secret: ${{ secrets.CLIENT_SECRET }}
-                  redirect-uri: ${{ secrets.REDIRECT_URI }}
+#            username: ${{ secrets.DB_USERNAME }}
+#            password: ${{ secrets.DB_PASSWORD }}
+#        security:
+#          oauth2:
+#            client:
+#              registration:
+#                google:
+#                  client-id: ${{ secrets.CLIENT_ID }}
+#                  client-secret: ${{ secrets.CLIENT_SECRET }}
+#                  redirect-uri: ${{ secrets.REDIRECT_URI }}
 #        spring.datasource.url: ${{ secrets.DB_URL }}
 #        DB_USERNAME: ${{ secrets.DB_USERNAME }}
 #        DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
