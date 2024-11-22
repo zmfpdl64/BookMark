@@ -61,7 +61,7 @@ jobs:
         port: 22
         script: |
           echo "${{ secrets.UBUNTU_PASSWORD }}" | sudo -S docker stop $(sudo docker ps -q)
-          echo "${{ secrets.UBUNTU_PASSWORD }}" | sudo docker rm prod-server
-          echo "${{ secrets.UBUNTU_PASSWORD }}" | sudo docker image rm ${{ secrets.DOCKER_REPO }}
-          echo "${{ secrets.UBUNTU_PASSWORD }}" | sudo docker pull ${{ secrets.DOCKER_REPO }}
-          echo "${{ secrets.UBUNTU_PASSWORD }}" | sudo docker run -d -p 8080:8080 -p 8088:8088 ${{ secrets.DOCKER_REPO }}
+          echo "${{ secrets.UBUNTU_PASSWORD }}" | sudo -S docker rm prod-server
+          echo "${{ secrets.UBUNTU_PASSWORD }}" | sudo -S docker image rm ${{ secrets.DOCKER_REPO }}
+          echo "${{ secrets.UBUNTU_PASSWORD }}" | sudo -S docker pull ${{ secrets.DOCKER_REPO }}
+          echo "${{ secrets.UBUNTU_PASSWORD }}" | sudo -S docker run -d -p 8080:8080 -p 8088:8088 ${{ secrets.DOCKER_REPO }}
