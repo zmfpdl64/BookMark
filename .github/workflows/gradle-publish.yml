@@ -31,12 +31,12 @@ jobs:
       with:
         files: ./src/main/resources/application.yml
       env:
-        DB_URL: ${{ secrets.DB_URL }}
-        DB_USERNAME: ${{ secrets.DB_USERNAME }}
-        DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-        CLIENT_ID: ${{ secrets.CLIENT_ID }}
-        CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
-        REDIRECT_URI: ${{ secrets.REDIRECT_URI }}
+        spring.datasource.url: ${{ secrets.DB_URL }}
+#        DB_USERNAME: ${{ secrets.DB_USERNAME }}
+#        DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+#        CLIENT_ID: ${{ secrets.CLIENT_ID }}
+#        CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+#        REDIRECT_URI: ${{ secrets.REDIRECT_URI }}
 
         # secret-key-source: ${{ secrets.SECRET_KEY_SOURCE }}
     - name: Build with Gradle
