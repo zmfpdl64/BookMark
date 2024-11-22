@@ -32,7 +32,7 @@ jobs:
         files: ./src/main/resources/application.yml
       env:
         spring.datasource.url: ${{ secrets.DB_URL }}
-        spring.datasource.username: ${{ secrets.DB_PASSWORD }}
+        spring.datasource.username: ${{ secrets.DB_USERNAME }}
         spring.datasource.password: ${{ secrets.DB_PASSWORD }}
         spring.security.oauth2.client.registration.google.client-id: ${{ secrets.CLIENT_ID }}
         spring.security.oauth2.client.registration.google.client-secret: ${{ secrets.CLIENT_SECRET }}
