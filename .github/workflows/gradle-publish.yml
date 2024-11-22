@@ -61,7 +61,7 @@ jobs:
         port: 22
         script: |
            su - ${{ secrets.UBUNTU_MASTER_USERNAME }}
-           su - ${{ secrets.UBUNTU_MASTER_PASSWORD }}
+           ${{ secrets.UBUNTU_MASTER_PASSWORD }}
            sudo docker stop $(sudo docker ps -q)
            sudo docker rm prod-server
            sudo docker image rm ${{ secrets.DOCKER_REPO }}
