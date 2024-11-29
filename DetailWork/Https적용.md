@@ -91,6 +91,8 @@ HTTPS로 연결 시도 시 Nginx는 SSL 인증서와 인증키를 사용해 연�
 
 ### 프론트 서버에서 백엔드 서버로 API 요청:
 클라이언트의 자바스크립트가 https://kbookmark.co.kr/api/bookmark 같은 API 요청을 프론트 서버에 보냅니다.
+<br>
+api라는 특정 path로 분리할 수 있습니다.
 
 ### Nginx에서 API 경로 처리:
 Nginx는 /api/bookmark에 대한 요청을 백엔드 서버로 전달합니다. 	url은 https://kbookmark.co.kr/api/bookmark 요청을 -> https://kbookmark.co.kr/bookmark로 변환해서 다시 요청합니다.
