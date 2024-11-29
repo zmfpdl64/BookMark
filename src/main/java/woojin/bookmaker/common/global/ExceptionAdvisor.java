@@ -1,5 +1,6 @@
 package woojin.bookmaker.common.global;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -10,6 +11,7 @@ import woojin.bookmaker.adaptor.service.CustomException;
 import java.util.HashMap;
 import java.util.Map;
 
+@Slf4j
 @RestControllerAdvice
 public class ExceptionAdvisor {
 
@@ -25,11 +27,13 @@ public class ExceptionAdvisor {
 
     @ExceptionHandler(CustomException.class)
     public ResponseEntity<?> handleCustomException(CustomException exception) {
+        log.error("CustomError : {}", exception.getMessage());
         return ResponseEntity.badRequest().body(exception.getMessage());
     }
 
     @ExceptionHandler(RuntimeException.class)
     public ResponseEntity<?> handleRunTimeException(RuntimeException exception) {
+        log.error("Runtime Error : {}", exception.getMessage());
         return ResponseEntity.badRequest().body(exception.getMessage());
     }
 }
