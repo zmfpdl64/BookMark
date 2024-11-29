@@ -1,6 +1,7 @@
 package woojin.bookmaker.adaptor.service.oauth;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -14,6 +15,7 @@ import java.util.Map;
 
 
 @Service
+@Slf4j
 @RequiredArgsConstructor
 public class GoogleOAuthService {
 
@@ -31,6 +33,8 @@ public class GoogleOAuthService {
     private final RestTemplate restTemplate;
 
     public GoogleTokenInfo getToken(String code) {
+
+        log.info("redirectUri : {}", redirectUri);
 
         // 요청 본문에 필요한 데이터 설정
         Map<String, String> data = new HashMap<>();
